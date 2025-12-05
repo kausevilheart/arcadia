@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arcadia</title>
+<title>Arcádia</title>
 <style>
 :root{
     --header-bg:#2c1d2c;
@@ -22,10 +22,17 @@
 body{margin:0;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0f0f5;color:#222;display:flex;flex-direction:column;}
 header{background:var(--header-bg);color:var(--accent-green);padding:20px;text-align:center;font-size:2.4em;font-weight:800;position:relative;box-shadow:0 6px 18px rgba(0,0,0,0.18);}
 .container{display:flex;flex:1;max-width:1300px;margin:20px auto;gap:22px;position:relative;}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;flex:1;}
-@media(max-width:1200px){.grid{grid-template-columns:repeat(3,1fr);}}
-@media(max-width:900px){.container{flex-direction:column;}.grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:600px){.grid{grid-template-columns:1fr;}}
+
+/* Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    flex: 1;
+}
+@media(max-width:1200px){.grid { grid-template-columns: repeat(3, 1fr); }}
+@media(max-width:900px){.container { flex-direction: column; } .grid { grid-template-columns: repeat(2, 1fr); }}
+@media(max-width:600px){.grid { grid-template-columns: 1fr; }}
 
 /* Cards */
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px) scale(0.995);}to{opacity:1;transform:translateY(0) scale(1);}}
@@ -45,7 +52,6 @@ header{background:var(--header-bg);color:var(--accent-green);padding:20px;text-a
 #sidebar{width:200px;position:fixed;top:120px;left:var(--side-margin);display:flex;flex-direction:column;gap:16px;padding:10px;max-height:calc(100vh - 140px);overflow-y:auto;}
 #sidebar button{width:calc(100% - 20px);font-size:1.15em;background:var(--accent-green);color:var(--header-bg);border:none;padding:12px;border-radius:10px;font-weight:700;cursor:pointer;transition:0.2s;}
 #sidebar button:hover{background:#8fc37d;}
-/* Botão Início com cor diferente */
 #sidebar button:first-child{background:#f0c75e;color:#2c1d2c;}
 #sidebar button:first-child:hover{background:#e6b94a;}
 
@@ -58,8 +64,8 @@ header{background:var(--header-bg);color:var(--accent-green);padding:20px;text-a
 /* Carrinho */
 #cart{width:320px;background:var(--cart-bg);padding:16px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.18);position:fixed;top:120px;right:var(--side-margin);color:white;display:flex;flex-direction:column;max-height:80vh;}
 #cart h3{margin:6px 0 12px;text-align:center;color:var(--accent-green);}
-#cart-items{list-style:none;padding:0;margin:0;overflow-y:auto;flex:1;}
-.cart-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;border-bottom:1px solid #7f416d;padding-bottom:10px;}
+#cart-items{list-style:none;padding:0 0 12px 0;margin:0;overflow-y:auto;flex:1;} /* padding-bottom corrigido */
+.cart-item{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;border-bottom:1px solid #7f416d;padding-bottom:10px;}
 .cart-details{flex:1;min-width:0;}
 .cart-details p:first-child{margin:0;font-weight:700;font-size:0.95em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .cart-details p:nth-child(2){margin:4px 0 0;font-size:0.86em;color:#cfcfcf;}
@@ -72,21 +78,38 @@ header{background:var(--header-bg);color:var(--accent-green);padding:20px;text-a
 .checkout-btn{margin-top:12px;width:100%;padding:12px;border-radius:12px;font-weight:900;background:linear-gradient(180deg,var(--cart-accent),#7f416d);color:white;border:none;cursor:pointer;}
 .checkout-btn:hover{transform:scale(1.02);}
 
+/* Carrinho mobile */
+@media(max-width:900px){
+    #cart {
+        position: relative;
+        width: 100%;
+        max-height: none;
+        margin-top: 20px;
+    }
+}
+
 /* Toast */
 #toast{position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:var(--accent-green);color:var(--header-bg);padding:12px 20px;border-radius:12px;font-weight:800;opacity:0;pointer-events:none;transition:opacity 0.4s;}
+#toast.show{opacity:1;}
 
 /* Página inicial texto grande */
 #home-text{
-    grid-column:1/-1;text-align:center;font-size:1.6em;color:#2c1d2c;padding:60px 20px;white-space:pre-line;line-height:1.6em;
-    margin-left:calc(200px + var(--side-margin)); 
-    margin-right:calc(320px + var(--side-margin));
+    grid-column:1/-1;
+    text-align:center;
+    font-size:1.6em;
+    color:#2c1d2c;
+    padding:60px 20px;
+    white-space:pre-line;
+    line-height:1.6em;
+    margin-left: calc(200px + var(--side-margin)); 
+    margin-right: calc(320px + var(--side-margin));
 }
-@media(max-width:900px){#home-text{margin:0;}}
+@media(max-width:900px){#home-text{ margin:0; }}
 </style>
 </head>
 <body>
 
-<header>Arcadia</header>
+<header>Arcádia</header>
 
 <div id="sidebar">
 <button onclick="showCategory('all')">Início</button>
@@ -215,9 +238,8 @@ function openCart(){ document.getElementById('cart').classList.add('open'); }
 /* Toast */
 function showToast(){
     const toast=document.getElementById('toast');
-    toast.textContent="Produto adicionado ao carrinho";
-    toast.style.opacity='1';
-    setTimeout(()=>{toast.style.opacity='0';},1400);
+    toast.classList.add('show');
+    setTimeout(()=>{toast.classList.remove('show');},1400);
 }
 
 /* Inicializa */
