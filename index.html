@@ -20,23 +20,36 @@
 /* Reset e layout */
 *{box-sizing:border-box;}
 body{margin:0;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0f0f5;color:#222;display:flex;flex-direction:column;}
-header{background:var(--header-bg);color:var(--accent-green);padding:20px;text-align:center;font-size:2.4em;font-weight:800;position:relative;box-shadow:0 6px 18px rgba(0,0,0,0.18);}
-.container{display:flex;flex:1;max-width:1300px;margin:20px auto;gap:22px;position:relative;}
 
-/* Grid */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    flex: 1;
+/* Header só com logo */
+header {
+    display: flex;
+    justify-content: center;  
+    align-items: center;
+    padding: 20px;
+    background: var(--header-bg);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
 }
-@media(max-width:1200px){.grid { grid-template-columns: repeat(3, 1fr); }}
-@media(max-width:900px){.container { flex-direction: column; } .grid { grid-template-columns: repeat(2, 1fr); }}
-@media(max-width:600px){.grid { grid-template-columns: 1fr; }}
+#header-logo {
+    height: 70px;
+}
+@media(max-width:900px){
+    #header-logo{height:50px;}
+}
+@media(max-width:600px){
+    #header-logo{height:40px;}
+}
+
+/* Container e grid */
+.container{display:flex;flex:1;max-width:1300px;margin:20px auto;gap:22px;position:relative;}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;flex:1;}
+@media(max-width:1200px){.grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:900px){.container{flex-direction:column;}.grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.grid{grid-template-columns:1fr;}}
 
 /* Cards */
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px) scale(0.995);}to{opacity:1;transform:translateY(0) scale(1);}}
-@keyframes glowPulse{0%,100%{box-shadow:0 0 8px var(--glow-color);}50%{box-shadow:0 0 20px 6px var(--glow-color);}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 8px var(--glow-color);}50%{box-shadow:0 0 20px 6px var(--glow-color);} }
 .card{background:var(--card-bg);border-radius:14px;padding:18px;text-align:center;color:white;transition:transform 0.25s, box-shadow 0.25s;opacity:0;animation:fadeUp 0.6s cubic-bezier(.2,.9,.2,1) forwards, glowPulse 2.5s ease-in-out infinite;}
 .card:hover{transform:translateY(-8px) scale(1.02);}
 .card img{width:100%;border-radius:10px;margin-bottom:14px;}
@@ -54,17 +67,15 @@ header{background:var(--header-bg);color:var(--accent-green);padding:20px;text-a
 #sidebar button:hover{background:#8fc37d;}
 #sidebar button:first-child{background:#f0c75e;color:#2c1d2c;}
 #sidebar button:first-child:hover{background:#e6b94a;}
-
-/* Responsivo barra lateral para celular */
 @media(max-width:900px){
     #sidebar{position:relative;top:0;width:100%;flex-direction:row;overflow-x:auto;max-height:none;padding:10px;gap:8px;}
     #sidebar button{flex:0 0 auto;width:auto;white-space:nowrap;}
 }
 
 /* Carrinho */
-#cart{width:320px;background:var(--cart-bg);padding:16px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.18);position:fixed;top:120px;right:var(--side-margin);color:white;display:flex;flex-direction:column;max-height:80vh;}
+#cart{width:320px;background:var(--cart-bg);padding:16px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.18);position:fixed;top:120px;right:var(--side-margin);color:white;display:flex;flex-direction:column;max-height:calc(100vh - 140px);}
 #cart h3{margin:6px 0 12px;text-align:center;color:var(--accent-green);}
-#cart-items{list-style:none;padding:0 0 12px 0;margin:0;overflow-y:auto;flex:1;} /* padding-bottom corrigido */
+#cart-items{list-style:none;padding:0;margin:0;overflow-y:auto;flex:1;}
 .cart-item{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;border-bottom:1px solid #7f416d;padding-bottom:10px;}
 .cart-details{flex:1;min-width:0;}
 .cart-details p:first-child{margin:0;font-weight:700;font-size:0.95em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -78,38 +89,23 @@ header{background:var(--header-bg);color:var(--accent-green);padding:20px;text-a
 .checkout-btn{margin-top:12px;width:100%;padding:12px;border-radius:12px;font-weight:900;background:linear-gradient(180deg,var(--cart-accent),#7f416d);color:white;border:none;cursor:pointer;}
 .checkout-btn:hover{transform:scale(1.02);}
 
-/* Carrinho mobile */
-@media(max-width:900px){
-    #cart {
-        position: relative;
-        width: 100%;
-        max-height: none;
-        margin-top: 20px;
-    }
-}
-
 /* Toast */
 #toast{position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:var(--accent-green);color:var(--header-bg);padding:12px 20px;border-radius:12px;font-weight:800;opacity:0;pointer-events:none;transition:opacity 0.4s;}
-#toast.show{opacity:1;}
 
 /* Página inicial texto grande */
 #home-text{
-    grid-column:1/-1;
-    text-align:center;
-    font-size:1.6em;
-    color:#2c1d2c;
-    padding:60px 20px;
-    white-space:pre-line;
-    line-height:1.6em;
-    margin-left: calc(200px + var(--side-margin)); 
-    margin-right: calc(320px + var(--side-margin));
+    grid-column:1/-1;text-align:center;font-size:1.6em;color:#2c1d2c;padding:60px 20px;white-space:pre-line;line-height:1.6em;
+    margin-left:calc(200px + var(--side-margin)); 
+    margin-right:calc(320px + var(--side-margin));
 }
-@media(max-width:900px){#home-text{ margin:0; }}
+@media(max-width:900px){#home-text{margin:0;}}
 </style>
 </head>
 <body>
 
-<header>Arcádia</header>
+<header>
+  <img src="nome.png" alt="Arcádia" id="header-logo">
+</header>
 
 <div id="sidebar">
 <button onclick="showCategory('all')">Início</button>
@@ -238,8 +234,9 @@ function openCart(){ document.getElementById('cart').classList.add('open'); }
 /* Toast */
 function showToast(){
     const toast=document.getElementById('toast');
-    toast.classList.add('show');
-    setTimeout(()=>{toast.classList.remove('show');},1400);
+    toast.textContent="Produto adicionado ao carrinho";
+    toast.style.opacity='1';
+    setTimeout(()=>{toast.style.opacity='0';},1400);
 }
 
 /* Inicializa */
