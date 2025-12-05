@@ -23,8 +23,15 @@ body{margin:0;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background
 header{background:var(--header-bg);padding:20px;text-align:center;position:relative;box-shadow:0 6px 18px rgba(0,0,0,0.18);}
 header img{max-height:60px;}
 .container{display:flex;flex:1;max-width:1300px;margin:20px auto;gap:22px;position:relative;}
-.grid{display:flex;flex-wrap:wrap;gap:24px;justify-content:center;align-items:flex-start;}
-@media(max-width:900px){.container{flex-direction:column;}}
+
+/* Grid flexível de cards */
+.grid{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:24px;
+}
+
 /* Cards */
 .card{
     background:var(--card-bg);
@@ -33,34 +40,29 @@ header img{max-height:60px;}
     text-align:center;
     color:white;
     transition:transform 0.25s, box-shadow 0.25s;
-    opacity:0;
-    animation:fadeUp 0.6s cubic-bezier(.2,.9,.2,1) forwards, glowPulse 2.5s ease-in-out infinite;
     max-width:150px;
-    width:100%;
+    flex:1 1 auto;
 }
-.card:hover{transform:translateY(-8px) scale(1.02);}
-.card img{width:100%;height:auto;border-radius:10px;margin-bottom:14px;}
+.card img{
+    width:100%;
+    height:auto;
+    border-radius:10px;
+    margin-bottom:14px;
+}
 .card h3{font-size:1.15em;margin:6px 0;font-weight:700;color:#e6d0f1;}
 .card p{font-weight:700;margin:0 0 10px;color:#d7f1d7;}
-
-/* Botões */
-.btn{display:inline-block;margin-top:10px;padding:12px 22px;background:linear-gradient(180deg,var(--btn-bg),#8fc37d);color:var(--header-bg);border-radius:14px;font-weight:800;cursor:pointer;border:none;box-shadow:0 6px 14px rgba(133,175,121,0.18);font-size:1em;transition:transform 0.22s ease, box-shadow 0.22s ease;}
-.btn:hover{transform:scale(1.04);box-shadow:0 12px 26px rgba(133,175,121,0.22);}
-.btn:active{transform:scale(0.96);opacity:0.95;}
+.card .btn{display:inline-block;margin-top:10px;padding:10px 16px;background:linear-gradient(180deg,var(--btn-bg),#8fc37d);color:var(--header-bg);border-radius:12px;font-weight:700;cursor:pointer;border:none;transition:0.2s;}
+.card .btn:hover{transform:scale(1.05);}
 
 /* Barra lateral */
-#sidebar{width:200px;position:fixed;top:120px;left:var(--side-margin);display:flex;flex-direction:column;gap:16px;padding:10px;max-height:calc(100vh - 140px);overflow-y:auto;}
-#sidebar button{width:calc(100% - 20px);font-size:1.15em;background:var(--accent-green);color:var(--header-bg);border:none;padding:12px;border-radius:10px;font-weight:700;cursor:pointer;transition:0.2s;}
+#sidebar{width:200px;position:fixed;top:100px;left:var(--side-margin);display:flex;flex-direction:column;gap:16px;padding:10px;max-height:calc(100vh - 120px);overflow-y:auto;}
+#sidebar button{width:calc(100% - 20px);font-size:1em;background:var(--accent-green);color:var(--header-bg);border:none;padding:12px;border-radius:10px;font-weight:700;cursor:pointer;transition:0.2s;}
 #sidebar button:hover{background:#8fc37d;}
 #sidebar button:first-child{background:#f0c75e;color:#2c1d2c;}
 #sidebar button:first-child:hover{background:#e6b94a;}
-@media(max-width:900px){
-    #sidebar{position:relative;top:0;width:100%;flex-direction:row;overflow-x:auto;max-height:none;padding:10px;gap:8px;}
-    #sidebar button{flex:0 0 auto;width:auto;white-space:nowrap;}
-}
 
 /* Carrinho */
-#cart{width:320px;background:var(--cart-bg);padding:16px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.18);position:fixed;top:120px;right:var(--side-margin);color:white;display:flex;flex-direction:column;max-height:80vh;}
+#cart{width:320px;background:var(--cart-bg);padding:16px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.18);position:fixed;top:100px;right:var(--side-margin);color:white;display:flex;flex-direction:column;max-height:80vh;overflow:hidden;}
 #cart h3{margin:6px 0 12px;text-align:center;color:var(--accent-green);}
 #cart-items{list-style:none;padding:0;margin:0;overflow-y:auto;flex:1;}
 .cart-item{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;border-bottom:1px solid #7f416d;padding-bottom:10px;}
@@ -74,35 +76,46 @@ header img{max-height:60px;}
 .remove-btn:hover{transform:scale(1.06);}
 #cart-total{font-size:1.12em;font-weight:800;text-align:right;margin-top:8px;color:var(--accent-green);}
 .checkout-btn{margin-top:12px;width:100%;padding:12px;border-radius:12px;font-weight:900;background:linear-gradient(180deg,var(--cart-accent),#7f416d);color:white;border:none;cursor:pointer;}
+.checkout-btn:hover{transform:scale(1.02);}
+
 /* Toast */
 #toast{position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:var(--accent-green);color:var(--header-bg);padding:12px 20px;border-radius:12px;font-weight:800;opacity:0;pointer-events:none;transition:opacity 0.4s;}
+
+/* Responsivo */
+@media(max-width:900px){
+    #sidebar{position:relative;top:0;width:100%;flex-direction:row;overflow-x:auto;max-height:none;padding:10px;gap:8px;}
+    #sidebar button{flex:0 0 auto;width:auto;white-space:nowrap;}
+    #cart{position:relative;width:100%;top:0;right:0;max-height:none;margin-top:20px;}
+}
 </style>
 </head>
 <body>
 
-<header><img src="nome.png" alt="Arcádia Logo"></header>
+<header>
+    <img src="nome.png" alt="Arcádia Logo">
+</header>
 
 <div id="sidebar">
-<button onclick="showCategory('all')">Início</button>
-<button onclick="showCategory('jogos')">Jogos</button>
-<button onclick="showCategory('pacotes')">Pacotes de Jogos</button>
-<button onclick="showCategory('mangas')">Mangás</button>
-<button onclick="showCategory('quadrinhos')">Quadrinhos</button>
-<button onclick="showCategory('livros')">Livros</button>
-<button onclick="showCategory('eletronicos')">Eletrônicos</button>
-<button onclick="showCategory('diversos')">Diversos</button>
-<button onclick="showCategory('canecas')">Canecas</button>
-<button onclick="showCategory('cubos')">Cubos Mágicos</button>
+    <button onclick="showCategory('all')">Início</button>
+    <button onclick="showCategory('jogos')">Jogos</button>
+    <button onclick="showCategory('pacotes')">Pacotes de Jogos</button>
+    <button onclick="showCategory('mangas')">Mangás</button>
+    <button onclick="showCategory('quadrinhos')">Quadrinhos</button>
+    <button onclick="showCategory('livros')">Livros</button>
+    <button onclick="showCategory('eletronicos')">Eletrônicos</button>
+    <button onclick="showCategory('diversos')">Diversos</button>
+    <button onclick="showCategory('canecas')">Canecas</button>
+    <button onclick="showCategory('cubos')">Cubos Mágicos</button>
 </div>
 
 <div class="container">
-<div class="grid" id="product-grid"></div>
-<aside id="cart">
-<h3>Carrinho</h3>
-<ul id="cart-items"></ul>
-<p id="cart-total">Total: R$0,00</p>
-<button class="checkout-btn" onclick="checkout()">Finalizar Compra</button>
-</aside>
+    <div class="grid" id="product-grid"></div>
+    <aside id="cart">
+        <h3>Carrinho</h3>
+        <ul id="cart-items"></ul>
+        <p id="cart-total">Total: R$0,00</p>
+        <button class="checkout-btn" onclick="checkout()">Finalizar Compra</button>
+    </aside>
 </div>
 
 <div id="toast">Produto adicionado ao carrinho</div>
@@ -111,8 +124,8 @@ header img{max-height:60px;}
 let cart = JSON.parse(localStorage.getItem('arcadia_cart_v8')) || [];
 function saveCart(){ localStorage.setItem('arcadia_cart_v8', JSON.stringify(cart)); }
 
-const products={
-    jogos:[
+const products = {
+    jogos: [
         {name:'504', price:200, img:'504.webp'},
         {name:'Dust', price:250, img:'dust.jpg'},
         {name:'Illimat', price:150, img:'illimat.webp'},
@@ -124,56 +137,56 @@ const products={
         {name:'Jogo 9', price:80, img:''},
         {name:'Jogo 10', price:90, img:''}
     ],
-    pacotes:[
+    pacotes: [
         {name:'Pacote 1', price:150, img:''},
         {name:'Pacote 2', price:200, img:''},
         {name:'Pacote 3', price:180, img:''},
         {name:'Pacote 4', price:220, img:''},
         {name:'Pacote 5', price:250, img:''}
     ],
-    mangas:[
+    mangas: [
         {name:'Mangá 1', price:25, img:''},
         {name:'Mangá 2', price:30, img:''},
         {name:'Mangá 3', price:28, img:''},
         {name:'Mangá 4', price:35, img:''},
         {name:'Mangá 5', price:32, img:''}
     ],
-    quadrinhos:[
+    quadrinhos: [
         {name:'Quadrinho 1', price:20, img:''},
         {name:'Quadrinho 2', price:35, img:''},
         {name:'Quadrinho 3', price:30, img:''},
         {name:'Quadrinho 4', price:25, img:''},
         {name:'Quadrinho 5', price:40, img:''}
     ],
-    livros:[
+    livros: [
         {name:'Livro 1', price:45, img:''},
         {name:'Livro 2', price:60, img:''},
         {name:'Livro 3', price:50, img:''},
         {name:'Livro 4', price:70, img:''},
         {name:'Livro 5', price:65, img:''}
     ],
-    eletronicos:[
+    eletronicos: [
         {name:'Eletrônico 1', price:120, img:''},
         {name:'Eletrônico 2', price:250, img:''},
         {name:'Eletrônico 3', price:180, img:''},
         {name:'Eletrônico 4', price:300, img:''},
         {name:'Eletrônico 5', price:220, img:''}
     ],
-    diversos:[
+    diversos: [
         {name:'Diverso 1', price:15, img:''},
         {name:'Diverso 2', price:40, img:''},
         {name:'Diverso 3', price:25, img:''},
         {name:'Diverso 4', price:30, img:''},
         {name:'Diverso 5', price:35, img:''}
     ],
-    canecas:[
+    canecas: [
         {name:'Caneca 1', price:35, img:''},
         {name:'Caneca 2', price:40, img:''},
         {name:'Caneca 3', price:38, img:''},
         {name:'Caneca 4', price:45, img:''},
         {name:'Caneca 5', price:42, img:''}
     ],
-    cubos:[
+    cubos: [
         {name:'Cubo 1', price:50, img:''},
         {name:'Cubo 2', price:75, img:''},
         {name:'Cubo 3', price:60, img:''},
@@ -183,18 +196,17 @@ const products={
 };
 
 function showCategory(cat){
-    const grid=document.getElementById('product-grid');
-    grid.innerHTML='';
-    if(cat==='all'){
-        grid.innerHTML=`<div style="width:100%;text-align:center;font-size:1.6em;color:#2c1d2c;padding:60px 20px;">O que temos aqui? Muita coisa. Tem jogos, livros, mangás e muito mais!</div>`;
+    const grid = document.getElementById('product-grid');
+    grid.innerHTML = '';
+    if(cat === 'all'){
+        grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;font-size:1.4em;padding:40px;">Bem-vindo à Arcádia! Escolha uma categoria à esquerda para ver os produtos.</div>`;
         return;
     }
-    (products[cat]||[]).forEach((p,i)=>{
-        const card=document.createElement('div');
-        card.className='card';
-        card.style.animationDelay=(i*0.08)+'s';
-        card.innerHTML=`
-            ${p.img?`<img src="${p.img}" alt="${p.name}">`:''}
+    (products[cat] || []).forEach(p=>{
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            ${p.img ? `<img src="${p.img}" alt="${p.name}">` : ''}
             <h3>${p.name}</h3>
             <p>R$${p.price.toFixed(2)}</p>
             <button class="btn" onclick="addToCart('${p.name}',${p.price},'${p.img}',this)">Comprar</button>
@@ -215,6 +227,7 @@ function addToCart(name, price, img, btn){
 }
 function removeFromCart(name){ cart=cart.filter(i=>i.name!==name); updateCart(); saveCart(); }
 function changeQuantity(name, delta){ const item=cart.find(i=>i.name===name); if(!item)return; item.quantity+=delta; if(item.quantity<1)item.quantity=1; updateCart(); saveCart(); }
+
 function updateCart(){
     const container=document.getElementById('cart-items');
     container.innerHTML='';
@@ -236,10 +249,11 @@ function updateCart(){
             </div>
         `;
         container.appendChild(li);
-        total+=item.price*item.quantity;
+        total += item.price * item.quantity;
     });
-    document.getElementById('cart-total').textContent=`Total: R$${total.toFixed(2)}`;
+    document.getElementById('cart-total').textContent = `Total: R$${total.toFixed(2)}`;
 }
+
 function checkout(){
     if(cart.length===0){ alert('Carrinho vazio!'); return; }
     let msg="Olá! Quero comprar:\n";
@@ -249,10 +263,19 @@ function checkout(){
     const phone='5586995586252';
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,'_blank');
 }
-function openCart(){ document.getElementById('cart').classList.add('open'); }
-function showToast(){ const toast=document.getElementById('toast'); toast.style.opacity='1'; setTimeout(()=>{toast.style.opacity='0';},1400); }
 
-showCategory('all');
+function openCart(){ document.getElementById('cart').classList.add('open'); }
+
+/* Toast */
+function showToast(){
+    const toast=document.getElementById('toast');
+    toast.textContent="Produto adicionado ao carrinho";
+    toast.style.opacity='1';
+    setTimeout(()=>{toast.style.opacity='0';},1400);
+}
+
+/* Inicializa */
+showCategory('jogos'); // mostra Jogos inicialmente
 updateCart();
 if(cart.length>0) openCart();
 </script>
