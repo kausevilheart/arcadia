@@ -17,45 +17,36 @@
     --side-margin: 20px;
 }
 
-/* Reset e layout */
 *{box-sizing:border-box;}
 body{margin:0;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0f0f5;color:#222;display:flex;flex-direction:column;}
-header{
-    background:var(--header-bg);
-    padding:20px;
-    text-align:center;
-    position:relative;
-    box-shadow:0 6px 18px rgba(0,0,0,0.18);
-}
-header img{
-    max-height:60px;
-}
+header{background:var(--header-bg);padding:20px;text-align:center;position:relative;box-shadow:0 6px 18px rgba(0,0,0,0.18);}
+header img{max-width:180px; height:auto; display:block; margin:0 auto;}
 
-/* Barra lateral */
-#sidebar{
-    width:200px;
-    position:fixed;
-    top:120px;
-    left:var(--side-margin);
+.container{display:flex;flex:1;max-width:1300px;margin:20px auto;gap:22px;position:relative;}
+#product-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;flex:1;}
+
+.card{
+    background:var(--card-bg);
+    border-radius:14px;
+    padding:12px;
+    text-align:center;
+    color:white;
+    transition:transform 0.25s, box-shadow 0.25s;
     display:flex;
     flex-direction:column;
-    gap:16px;
-    padding:10px;
-    max-height:calc(100vh - 140px);
-    overflow-y:auto;
+    align-items:center;
 }
-#sidebar button{
-    width:calc(100% - 20px);
-    font-size:1.15em;
-    background:var(--accent-green);
-    color:var(--header-bg);
-    border:none;
-    padding:12px;
-    border-radius:10px;
-    font-weight:700;
-    cursor:pointer;
-    transition:0.2s;
-}
+.card:hover{transform:translateY(-6px) scale(1.02);}
+.card img{width:auto; max-width:250px; height:auto; border-radius:10px; margin-bottom:10px;}
+.card h3{margin:6px 0;font-weight:700;color:#e6d0f1;}
+.card p{margin:0 0 10px;font-weight:700;color:#d7f1d7;}
+.btn{display:inline-block;margin-top:10px;padding:10px 18px;background:linear-gradient(180deg,var(--btn-bg),#8fc37d);color:var(--header-bg);border-radius:14px;font-weight:800;cursor:pointer;border:none;box-shadow:0 6px 14px rgba(133,175,121,0.18);font-size:0.95em;transition:transform 0.22s ease, box-shadow 0.22s ease;}
+.btn:hover{transform:scale(1.04);box-shadow:0 12px 26px rgba(133,175,121,0.22);}
+.btn:active{transform:scale(0.96);opacity:0.95;}
+
+/* Barra lateral */
+#sidebar{width:200px;position:fixed;top:120px;left:var(--side-margin);display:flex;flex-direction:column;gap:16px;padding:10px;max-height:calc(100vh - 140px);overflow-y:auto;}
+#sidebar button{width:calc(100% - 20px);font-size:1.15em;background:var(--accent-green);color:var(--header-bg);border:none;padding:12px;border-radius:10px;font-weight:700;cursor:pointer;transition:0.2s;}
 #sidebar button:hover{background:#8fc37d;}
 #sidebar button:first-child{background:#f0c75e;color:#2c1d2c;}
 #sidebar button:first-child:hover{background:#e6b94a;}
@@ -63,56 +54,6 @@ header img{
     #sidebar{position:relative;top:0;width:100%;flex-direction:row;overflow-x:auto;max-height:none;padding:10px;gap:8px;}
     #sidebar button{flex:0 0 auto;width:auto;white-space:nowrap;}
 }
-
-/* Container de produtos */
-.container{
-    display:flex;
-    flex:1;
-    max-width:1300px;
-    margin:20px auto;
-    gap:22px;
-}
-
-/* Cards adaptáveis */
-.grid{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 22px;
-    flex:1;
-}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px) scale(0.995);}to{opacity:1;transform:translateY(0) scale(1);}}
-
-/* Cards */
-.card{
-    background:var(--card-bg);
-    border-radius:14px;
-    padding:18px;
-    text-align:center;
-    color:white;
-    transition:transform 0.25s, box-shadow 0.25s;
-    opacity:0;
-    animation:fadeUp 0.6s cubic-bezier(.2,.9,.2,1) forwards;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-}
-.card:hover{transform:translateY(-8px) scale(1.02);}
-.card img{
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 14px;
-}
-.card h3{font-size:1.15em;margin:6px 0;font-weight:700;color:#e6d0f1;}
-.card p{font-weight:700;margin:0 0 10px;color:#d7f1d7;}
-
-/* Botões */
-.btn{display:inline-block;margin-top:10px;padding:12px 22px;background:linear-gradient(180deg,var(--btn-bg),#8fc37d);color:var(--header-bg);border-radius:14px;font-weight:800;cursor:pointer;border:none;box-shadow:0 6px 14px rgba(133,175,121,0.18);font-size:1em;transition:transform 0.22s ease, box-shadow 0.22s ease;}
-.btn:hover{transform:scale(1.04);box-shadow:0 12px 26px rgba(133,175,121,0.22);}
-.btn:active{transform:scale(0.96);opacity:0.95;}
 
 /* Carrinho */
 #cart{width:320px;background:var(--cart-bg);padding:16px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.18);position:fixed;top:120px;right:var(--side-margin);color:white;display:flex;flex-direction:column;max-height:80vh;}
@@ -129,24 +70,13 @@ header img{
 .remove-btn:hover{transform:scale(1.06);}
 #cart-total{font-size:1.12em;font-weight:800;text-align:right;margin-top:8px;color:var(--accent-green);}
 .checkout-btn{margin-top:12px;width:100%;padding:12px;border-radius:12px;font-weight:900;background:linear-gradient(180deg,var(--cart-accent),#7f416d);color:white;border:none;cursor:pointer;}
-.checkout-btn:hover{transform:scale(1.02);}
-
-/* Toast */
 #toast{position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:var(--accent-green);color:var(--header-bg);padding:12px 20px;border-radius:12px;font-weight:800;opacity:0;pointer-events:none;transition:opacity 0.4s;}
-
-/* Página inicial texto grande */
-#home-text{
-    grid-column:1/-1;text-align:center;font-size:1.6em;color:#2c1d2c;padding:60px 20px;white-space:pre-line;line-height:1.6em;
-    margin-left:calc(200px + var(--side-margin)); 
-    margin-right:calc(320px + var(--side-margin));
-}
-@media(max-width:900px){#home-text{margin:0;}}
 </style>
 </head>
 <body>
 
 <header>
-<img src="nome.png" alt="Arcádia Logo">
+    <img src="nome.png" alt="Arcádia Logo">
 </header>
 
 <div id="sidebar">
@@ -163,13 +93,13 @@ header img{
 </div>
 
 <div class="container">
-<div class="grid" id="product-grid"></div>
-<aside id="cart">
-<h3>Carrinho</h3>
-<ul id="cart-items"></ul>
-<p id="cart-total">Total: R$0,00</p>
-<button class="checkout-btn" onclick="checkout()">Finalizar Compra</button>
-</aside>
+    <div id="product-grid"></div>
+    <aside id="cart">
+        <h3>Carrinho</h3>
+        <ul id="cart-items"></ul>
+        <p id="cart-total">Total: R$0,00</p>
+        <button class="checkout-btn" onclick="checkout()">Finalizar Compra</button>
+    </aside>
 </div>
 
 <div id="toast">Produto adicionado ao carrinho</div>
@@ -180,67 +110,67 @@ function saveCart(){ localStorage.setItem('arcadia_cart_v8', JSON.stringify(cart
 
 const products={
     jogos:[
-        {name:'504',price:200,img:'504.webp'},
-        {name:'Dust',price:250,img:'dust.jpg'},
-        {name:'Illimat',price:150,img:'illimat.webp'},
-        {name:'Ryu',price:150,img:'ryu.webp'},
-        {name:'Neuroshima Hex',price:100,img:'neuroshimahex.jpg'}
+        {name:'504', price:200, img:'504.webp'},
+        {name:'Dust', price:250, img:'dust.jpg'},
+        {name:'Illimat', price:150, img:'illimat.webp'},
+        {name:'Ryu', price:150, img:'ryu.webp'},
+        {name:'Neuroshima Hex', price:100, img:'neuroshimahex.jpg'}
     ],
     pacotes:[
-        {name:'Pacote 1',price:150,img:'504.webp'},
-        {name:'Pacote 2',price:200,img:'dust.jpg'},
-        {name:'Pacote 3',price:180,img:'illimat.webp'},
-        {name:'Pacote 4',price:220,img:'ryu.webp'},
-        {name:'Pacote 5',price:250,img:'neuroshimahex.jpg'}
+        {name:'Pacote 1', price:150, img:'504.webp'},
+        {name:'Pacote 2', price:200, img:'dust.jpg'},
+        {name:'Pacote 3', price:180, img:'illimat.webp'},
+        {name:'Pacote 4', price:220, img:'ryu.webp'},
+        {name:'Pacote 5', price:250, img:'neuroshimahex.jpg'}
     ],
     mangas:[
-        {name:'Mangá 1',price:25,img:'504.webp'},
-        {name:'Mangá 2',price:30,img:'dust.jpg'},
-        {name:'Mangá 3',price:28,img:'illimat.webp'},
-        {name:'Mangá 4',price:35,img:'ryu.webp'},
-        {name:'Mangá 5',price:32,img:'neuroshimahex.jpg'}
+        {name:'Mangá 1', price:25, img:'504.webp'},
+        {name:'Mangá 2', price:30, img:'dust.jpg'},
+        {name:'Mangá 3', price:28, img:'illimat.webp'},
+        {name:'Mangá 4', price:35, img:'ryu.webp'},
+        {name:'Mangá 5', price:32, img:'neuroshimahex.jpg'}
     ],
     quadrinhos:[
-        {name:'Quadrinho 1',price:20,img:'504.webp'},
-        {name:'Quadrinho 2',price:35,img:'dust.jpg'},
-        {name:'Quadrinho 3',price:30,img:'illimat.webp'},
-        {name:'Quadrinho 4',price:25,img:'ryu.webp'},
-        {name:'Quadrinho 5',price:40,img:'neuroshimahex.jpg'}
+        {name:'Quadrinho 1', price:20, img:'504.webp'},
+        {name:'Quadrinho 2', price:35, img:'dust.jpg'},
+        {name:'Quadrinho 3', price:30, img:'illimat.webp'},
+        {name:'Quadrinho 4', price:25, img:'ryu.webp'},
+        {name:'Quadrinho 5', price:40, img:'neuroshimahex.jpg'}
     ],
     livros:[
-        {name:'Livro 1',price:45,img:'504.webp'},
-        {name:'Livro 2',price:60,img:'dust.jpg'},
-        {name:'Livro 3',price:50,img:'illimat.webp'},
-        {name:'Livro 4',price:70,img:'ryu.webp'},
-        {name:'Livro 5',price:65,img:'neuroshimahex.jpg'}
+        {name:'Livro 1', price:45, img:'504.webp'},
+        {name:'Livro 2', price:60, img:'dust.jpg'},
+        {name:'Livro 3', price:50, img:'illimat.webp'},
+        {name:'Livro 4', price:70, img:'ryu.webp'},
+        {name:'Livro 5', price:65, img:'neuroshimahex.jpg'}
     ],
     eletronicos:[
-        {name:'Eletrônico 1',price:120,img:'504.webp'},
-        {name:'Eletrônico 2',price:250,img:'dust.jpg'},
-        {name:'Eletrônico 3',price:180,img:'illimat.webp'},
-        {name:'Eletrônico 4',price:300,img:'ryu.webp'},
-        {name:'Eletrônico 5',price:220,img:'neuroshimahex.jpg'}
+        {name:'Eletrônico 1', price:120, img:'504.webp'},
+        {name:'Eletrônico 2', price:250, img:'dust.jpg'},
+        {name:'Eletrônico 3', price:180, img:'illimat.webp'},
+        {name:'Eletrônico 4', price:300, img:'ryu.webp'},
+        {name:'Eletrônico 5', price:220, img:'neuroshimahex.jpg'}
     ],
     diversos:[
-        {name:'Diverso 1',price:15,img:'504.webp'},
-        {name:'Diverso 2',price:40,img:'dust.jpg'},
-        {name:'Diverso 3',price:25,img:'illimat.webp'},
-        {name:'Diverso 4',price:30,img:'ryu.webp'},
-        {name:'Diverso 5',price:35,img:'neuroshimahex.jpg'}
+        {name:'Diverso 1', price:15, img:'504.webp'},
+        {name:'Diverso 2', price:40, img:'dust.jpg'},
+        {name:'Diverso 3', price:25, img:'illimat.webp'},
+        {name:'Diverso 4', price:30, img:'ryu.webp'},
+        {name:'Diverso 5', price:35, img:'neuroshimahex.jpg'}
     ],
     canecas:[
-        {name:'Caneca 1',price:35,img:'504.webp'},
-        {name:'Caneca 2',price:40,img:'dust.jpg'},
-        {name:'Caneca 3',price:38,img:'illimat.webp'},
-        {name:'Caneca 4',price:45,img:'ryu.webp'},
-        {name:'Caneca 5',price:42,img:'neuroshimahex.jpg'}
+        {name:'Caneca 1', price:35, img:'504.webp'},
+        {name:'Caneca 2', price:40, img:'dust.jpg'},
+        {name:'Caneca 3', price:38, img:'illimat.webp'},
+        {name:'Caneca 4', price:45, img:'ryu.webp'},
+        {name:'Caneca 5', price:42, img:'neuroshimahex.jpg'}
     ],
     cubos:[
-        {name:'Cubo 1',price:50,img:'504.webp'},
-        {name:'Cubo 2',price:75,img:'dust.jpg'},
-        {name:'Cubo 3',price:60,img:'illimat.webp'},
-        {name:'Cubo 4',price:80,img:'ryu.webp'},
-        {name:'Cubo 5',price:90,img:'neuroshimahex.jpg'}
+        {name:'Cubo 1', price:50, img:'504.webp'},
+        {name:'Cubo 2', price:75, img:'dust.jpg'},
+        {name:'Cubo 3', price:60, img:'illimat.webp'},
+        {name:'Cubo 4', price:80, img:'ryu.webp'},
+        {name:'Cubo 5', price:90, img:'neuroshimahex.jpg'}
     ]
 };
 
@@ -248,35 +178,23 @@ function showCategory(cat){
     const grid=document.getElementById('product-grid');
     grid.innerHTML='';
     if(cat==='all'){
-        grid.innerHTML=`<div id="home-text">
-O que temos aqui? Muita coisa. 
-
-Tem jogos, em livros, tem até Walkie Talkie!
-
-Muitas coisas precisam achar novos donos por que já não posso mais tê-las, e essa vão ser no melhor preço possível.
-
-Já outras coisas... Tem coisas que realmente não quero me desfazer, mas se aparecer o preço justo pra que isso aconteça, então era pra ser. Então dá uma olhada, e se algo te interessar, clica ali em contato e me chama.
-
-Ah, já ia me esquecendo, mas não vou por imagem por que ia ser muito trabalhoso, se precisar de foto, clica ali embaixo e me chama.
-        </div>`;
+        grid.innerHTML=`<div style="width:100%;text-align:center;font-size:1.6em;color:#2c1d2c;padding:60px 20px;">Bem-vindo à Arcádia! Explore nossas categorias e produtos.</div>`;
         return;
     }
-    (products[cat]||[]).forEach((p,i)=>{
+    (products[cat]||[]).forEach(p=>{
         const card=document.createElement('div');
         card.className='card';
-        card.style.animationDelay=(i*0.08)+'s';
         card.innerHTML=`
             ${p.img?`<img src="${p.img}" alt="${p.name}">`:''}
             <h3>${p.name}</h3>
             <p>R$${p.price.toFixed(2)}</p>
-            <button class="btn" onclick="addToCart('${p.name}',${p.price},'${p.img}',this)">Comprar</button>
+            <button class="btn" onclick="addToCart('${p.name}',${p.price},'${p.img}')">Comprar</button>
         `;
         grid.appendChild(card);
     });
 }
 
-/* Carrinho */
-function addToCart(name, price, img, btn){
+function addToCart(name, price, img){
     const existing = cart.find(i=>i.name===name);
     if(existing) existing.quantity++;
     else cart.push({name,price,quantity:1});
@@ -326,8 +244,6 @@ function checkout(){
 }
 
 function openCart(){ document.getElementById('cart').classList.add('open'); }
-
-/* Toast */
 function showToast(){
     const toast=document.getElementById('toast');
     toast.textContent="Produto adicionado ao carrinho";
