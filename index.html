@@ -17,16 +17,20 @@
     --side-margin: 20px;
 }
 
+/* Reset e layout */
 *{box-sizing:border-box;}
 body{margin:0;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0f0f5;color:#222;display:flex;flex-direction:column;}
-header{background:var(--header-bg);padding:20px;text-align:center;position:relative;box-shadow:0 6px 18px rgba(0,0,0,0.18);}
+header{background:var(--header-bg);color:var(--accent-green);padding:20px;text-align:center;position:relative;box-shadow:0 6px 18px rgba(0,0,0,0.18);}
 header img{max-height:60px;}
+
+/* Container e grid */
 .container{display:flex;flex:1;max-width:1300px;margin:20px auto;gap:22px;position:relative;}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;flex:1;}
 @media(max-width:1200px){.grid{grid-template-columns:repeat(3,1fr);}}
 @media(max-width:900px){.container{flex-direction:column;}.grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:600px){.grid{grid-template-columns:1fr;}}
 
+/* Cards */
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px) scale(0.995);}to{opacity:1;transform:translateY(0) scale(1);}}
 @keyframes glowPulse{0%,100%{box-shadow:0 0 8px var(--glow-color);}50%{box-shadow:0 0 20px 6px var(--glow-color);} }
 .card{background:var(--card-bg);border-radius:14px;padding:18px;text-align:center;color:white;transition:transform 0.25s, box-shadow 0.25s;opacity:0;animation:fadeUp 0.6s cubic-bezier(.2,.9,.2,1) forwards, glowPulse 2.5s ease-in-out infinite;}
@@ -35,10 +39,12 @@ header img{max-height:60px;}
 .card h3{font-size:1.15em;margin:6px 0;font-weight:700;color:#e6d0f1;}
 .card p{font-weight:700;margin:0 0 10px;color:#d7f1d7;}
 
+/* Botões */
 .btn{display:inline-block;margin-top:10px;padding:12px 22px;background:linear-gradient(180deg,var(--btn-bg),#8fc37d);color:var(--header-bg);border-radius:14px;font-weight:800;cursor:pointer;border:none;box-shadow:0 6px 14px rgba(133,175,121,0.18);font-size:1em;transition:transform 0.22s ease, box-shadow 0.22s ease;}
 .btn:hover{transform:scale(1.04);box-shadow:0 12px 26px rgba(133,175,121,0.22);}
 .btn:active{transform:scale(0.96);opacity:0.95;}
 
+/* Barra lateral */
 #sidebar{width:200px;position:fixed;top:120px;left:var(--side-margin);display:flex;flex-direction:column;gap:16px;padding:10px;max-height:calc(100vh - 140px);overflow-y:auto;}
 #sidebar button{width:calc(100% - 20px);font-size:1.15em;background:var(--accent-green);color:var(--header-bg);border:none;padding:12px;border-radius:10px;font-weight:700;cursor:pointer;transition:0.2s;}
 #sidebar button:hover{background:#8fc37d;}
@@ -49,6 +55,7 @@ header img{max-height:60px;}
     #sidebar button{flex:0 0 auto;width:auto;white-space:nowrap;}
 }
 
+/* Carrinho */
 #cart{width:320px;background:var(--cart-bg);padding:16px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.18);position:fixed;top:120px;right:var(--side-margin);color:white;display:flex;flex-direction:column;max-height:80vh;}
 #cart h3{margin:6px 0 12px;text-align:center;color:var(--accent-green);}
 #cart-items{list-style:none;padding:0;margin:0;overflow-y:auto;flex:1;}
@@ -64,6 +71,8 @@ header img{max-height:60px;}
 #cart-total{font-size:1.12em;font-weight:800;text-align:right;margin-top:8px;color:var(--accent-green);}
 .checkout-btn{margin-top:12px;width:100%;padding:12px;border-radius:12px;font-weight:900;background:linear-gradient(180deg,var(--cart-accent),#7f416d);color:white;border:none;cursor:pointer;}
 #toast{position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:var(--accent-green);color:var(--header-bg);padding:12px 20px;border-radius:12px;font-weight:800;opacity:0;pointer-events:none;transition:opacity 0.4s;}
+
+/* Página inicial texto grande */
 #home-text{grid-column:1/-1;text-align:center;font-size:1.6em;color:#2c1d2c;padding:60px 20px;white-space:pre-line;line-height:1.6em;margin-left:calc(200px + var(--side-margin)); margin-right:calc(320px + var(--side-margin));}
 @media(max-width:900px){#home-text{margin:0;}}
 </style>
@@ -71,30 +80,22 @@ header img{max-height:60px;}
 <body>
 
 <header>
-<img src="Imagens/logo.png" alt="Arcádia Logo">
+    <img src="Imagens/nome.png" alt="Arcádia Logo">
 </header>
 
 <div id="sidebar">
-<button onclick="showCategory('all')">Início</button>
-<button onclick="showCategory('jogos')">Jogos</button>
-<button onclick="showCategory('pacotes')">Pacotes de Jogos</button>
-<button onclick="showCategory('mangas')">Mangás</button>
-<button onclick="showCategory('quadrinhos')">Quadrinhos</button>
-<button onclick="showCategory('livros')">Livros</button>
-<button onclick="showCategory('eletronicos')">Eletrônicos</button>
-<button onclick="showCategory('diversos')">Diversos</button>
-<button onclick="showCategory('canecas')">Canecas</button>
-<button onclick="showCategory('cubos')">Cubos Mágicos</button>
+    <button onclick="showCategory('all')">Início</button>
+    <button onclick="showCategory('jogos')">Jogos</button>
 </div>
 
 <div class="container">
-<div class="grid" id="product-grid"></div>
-<aside id="cart">
-<h3>Carrinho</h3>
-<ul id="cart-items"></ul>
-<p id="cart-total">Total: R$0,00</p>
-<button class="checkout-btn" onclick="checkout()">Finalizar Compra</button>
-</aside>
+    <div class="grid" id="product-grid"></div>
+    <aside id="cart">
+        <h3>Carrinho</h3>
+        <ul id="cart-items"></ul>
+        <p id="cart-total">Total: R$0,00</p>
+        <button class="checkout-btn" onclick="checkout()">Finalizar Compra</button>
+    </aside>
 </div>
 
 <div id="toast">Produto adicionado ao carrinho</div>
@@ -103,10 +104,9 @@ header img{max-height:60px;}
 let cart = JSON.parse(localStorage.getItem('arcadia_cart_v7')) || [];
 function saveCart(){ localStorage.setItem('arcadia_cart_v7', JSON.stringify(cart)); }
 
-const products={
+const products = {
     jogos:[
-        {name:'504', price:200, img:'Imagens/Jogos/504.png'},
-        {name:'Dust', price:250, img:'Imagens/Jogos/dust.png'},
+        {name:'504', price:200, img:'Imagens/Jogos/504.webp'},
         {name:'Illimat', price:150, img:'Imagens/Jogos/illimat.png'},
         {name:'Ryu', price:150, img:'Imagens/Jogos/ryu.png'},
         {name:'Neuroshima Hex', price:100, img:'Imagens/Jogos/neuroshimahex.png'}
@@ -144,7 +144,6 @@ Ah, já ia me esquecendo, mas não vou por imagem por que ia ser muito trabalhos
     });
 }
 
-/* Carrinho */
 function addToCart(name, price, img, btn){
     const existing = cart.find(i=>i.name===name);
     if(existing) existing.quantity++;
@@ -195,8 +194,6 @@ function checkout(){
 }
 
 function openCart(){ document.getElementById('cart').classList.add('open'); }
-
-/* Toast */
 function showToast(){
     const toast=document.getElementById('toast');
     toast.textContent="Produto adicionado ao carrinho";
@@ -204,7 +201,6 @@ function showToast(){
     setTimeout(()=>{toast.style.opacity='0';},1400);
 }
 
-/* Inicializa */
 showCategory('all');
 updateCart();
 if(cart.length>0) openCart();
