@@ -28,25 +28,63 @@ header{
     box-shadow:0 6px 18px rgba(0,0,0,0.18);
 }
 header img{
-    max-width:200px;
-    height:auto;
+    max-height:60px;
 }
 
-/* Container e grid */
-.container{display:flex;flex:1;max-width:1300px;margin:20px auto;gap:22px;position:relative;}
-.grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:24px;
-    grid-auto-rows:auto; /* cards com altura variável */
+/* Barra lateral */
+#sidebar{
+    width:200px;
+    position:fixed;
+    top:120px;
+    left:var(--side-margin);
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    padding:10px;
+    max-height:calc(100vh - 140px);
+    overflow-y:auto;
 }
-@media(max-width:1200px){.grid{grid-template-columns:repeat(3,1fr);}}
-@media(max-width:900px){.container{flex-direction:column;}.grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:600px){.grid{grid-template-columns:1fr;}}
+#sidebar button{
+    width:calc(100% - 20px);
+    font-size:1.15em;
+    background:var(--accent-green);
+    color:var(--header-bg);
+    border:none;
+    padding:12px;
+    border-radius:10px;
+    font-weight:700;
+    cursor:pointer;
+    transition:0.2s;
+}
+#sidebar button:hover{background:#8fc37d;}
+#sidebar button:first-child{background:#f0c75e;color:#2c1d2c;}
+#sidebar button:first-child:hover{background:#e6b94a;}
+@media(max-width:900px){
+    #sidebar{position:relative;top:0;width:100%;flex-direction:row;overflow-x:auto;max-height:none;padding:10px;gap:8px;}
+    #sidebar button{flex:0 0 auto;width:auto;white-space:nowrap;}
+}
+
+/* Container de produtos */
+.container{
+    display:flex;
+    flex:1;
+    max-width:1300px;
+    margin:20px auto;
+    gap:22px;
+}
+
+/* Cards adaptáveis */
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 22px;
+    flex:1;
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px) scale(0.995);}to{opacity:1;transform:translateY(0) scale(1);}}
 
 /* Cards */
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px) scale(0.995);}to{opacity:1;transform:translateY(0) scale(1);}}
-@keyframes glowPulse{0%,100%{box-shadow:0 0 8px var(--glow-color);}50%{box-shadow:0 0 20px 6px var(--glow-color);}}
 .card{
     background:var(--card-bg);
     border-radius:14px;
@@ -55,15 +93,18 @@ header img{
     color:white;
     transition:transform 0.25s, box-shadow 0.25s;
     opacity:0;
-    animation:fadeUp 0.6s cubic-bezier(.2,.9,.2,1) forwards, glowPulse 2.5s ease-in-out infinite;
+    animation:fadeUp 0.6s cubic-bezier(.2,.9,.2,1) forwards;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
 }
 .card:hover{transform:translateY(-8px) scale(1.02);}
 .card img{
-    width:100%;
-    height:auto;          /* altura proporcional */
-    object-fit:contain;   /* mantém proporção sem cortar */
-    border-radius:10px;
-    margin-bottom:14px;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 14px;
 }
 .card h3{font-size:1.15em;margin:6px 0;font-weight:700;color:#e6d0f1;}
 .card p{font-weight:700;margin:0 0 10px;color:#d7f1d7;}
@@ -73,22 +114,11 @@ header img{
 .btn:hover{transform:scale(1.04);box-shadow:0 12px 26px rgba(133,175,121,0.22);}
 .btn:active{transform:scale(0.96);opacity:0.95;}
 
-/* Barra lateral */
-#sidebar{width:200px;position:fixed;top:120px;left:var(--side-margin);display:flex;flex-direction:column;gap:16px;padding:10px;max-height:calc(100vh - 140px);overflow-y:auto;}
-#sidebar button{width:calc(100% - 20px);font-size:1.15em;background:var(--accent-green);color:var(--header-bg);border:none;padding:12px;border-radius:10px;font-weight:700;cursor:pointer;transition:0.2s;}
-#sidebar button:hover{background:#8fc37d;}
-#sidebar button:first-child{background:#f0c75e;color:#2c1d2c;}
-#sidebar button:first-child:hover{background:#e6b94a;}
-@media(max-width:900px){
-    #sidebar{position:relative;top:0;width:100%;flex-direction:row;overflow-x:auto;max-height:none;padding:10px;gap:8px;}
-    #sidebar button{flex:0 0 auto;width:auto;white-space:nowrap;}
-}
-
 /* Carrinho */
 #cart{width:320px;background:var(--cart-bg);padding:16px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.18);position:fixed;top:120px;right:var(--side-margin);color:white;display:flex;flex-direction:column;max-height:80vh;}
 #cart h3{margin:6px 0 12px;text-align:center;color:var(--accent-green);}
 #cart-items{list-style:none;padding:0;margin:0;overflow-y:auto;flex:1;}
-.cart-item{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;border-bottom:1px solid #7f416d;padding-bottom:10px;}
+.cart-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;border-bottom:1px solid #7f416d;padding-bottom:10px;}
 .cart-details{flex:1;min-width:0;}
 .cart-details p:first-child{margin:0;font-weight:700;font-size:0.95em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .cart-details p:nth-child(2){margin:4px 0 0;font-size:0.86em;color:#cfcfcf;}
@@ -99,8 +129,11 @@ header img{
 .remove-btn:hover{transform:scale(1.06);}
 #cart-total{font-size:1.12em;font-weight:800;text-align:right;margin-top:8px;color:var(--accent-green);}
 .checkout-btn{margin-top:12px;width:100%;padding:12px;border-radius:12px;font-weight:900;background:linear-gradient(180deg,var(--cart-accent),#7f416d);color:white;border:none;cursor:pointer;}
+.checkout-btn:hover{transform:scale(1.02);}
+
 /* Toast */
 #toast{position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:var(--accent-green);color:var(--header-bg);padding:12px 20px;border-radius:12px;font-weight:800;opacity:0;pointer-events:none;transition:opacity 0.4s;}
+
 /* Página inicial texto grande */
 #home-text{
     grid-column:1/-1;text-align:center;font-size:1.6em;color:#2c1d2c;padding:60px 20px;white-space:pre-line;line-height:1.6em;
@@ -113,7 +146,7 @@ header img{
 <body>
 
 <header>
-<img src="nome.png" alt="Logo Arcádia">
+<img src="nome.png" alt="Arcádia Logo">
 </header>
 
 <div id="sidebar">
@@ -154,60 +187,60 @@ const products={
         {name:'Neuroshima Hex',price:100,img:'neuroshimahex.jpg'}
     ],
     pacotes:[
-        {name:'Pacote 1',price:150,img:''},
-        {name:'Pacote 2',price:200,img:''},
-        {name:'Pacote 3',price:180,img:''},
-        {name:'Pacote 4',price:220,img:''},
-        {name:'Pacote 5',price:250,img:''}
+        {name:'Pacote 1',price:150,img:'504.webp'},
+        {name:'Pacote 2',price:200,img:'dust.jpg'},
+        {name:'Pacote 3',price:180,img:'illimat.webp'},
+        {name:'Pacote 4',price:220,img:'ryu.webp'},
+        {name:'Pacote 5',price:250,img:'neuroshimahex.jpg'}
     ],
     mangas:[
-        {name:'Mangá 1',price:25,img:''},
-        {name:'Mangá 2',price:30,img:''},
-        {name:'Mangá 3',price:28,img:''},
-        {name:'Mangá 4',price:35,img:''},
-        {name:'Mangá 5',price:32,img:''}
+        {name:'Mangá 1',price:25,img:'504.webp'},
+        {name:'Mangá 2',price:30,img:'dust.jpg'},
+        {name:'Mangá 3',price:28,img:'illimat.webp'},
+        {name:'Mangá 4',price:35,img:'ryu.webp'},
+        {name:'Mangá 5',price:32,img:'neuroshimahex.jpg'}
     ],
     quadrinhos:[
-        {name:'Quadrinho 1',price:20,img:''},
-        {name:'Quadrinho 2',price:35,img:''},
-        {name:'Quadrinho 3',price:30,img:''},
-        {name:'Quadrinho 4',price:25,img:''},
-        {name:'Quadrinho 5',price:40,img:''}
+        {name:'Quadrinho 1',price:20,img:'504.webp'},
+        {name:'Quadrinho 2',price:35,img:'dust.jpg'},
+        {name:'Quadrinho 3',price:30,img:'illimat.webp'},
+        {name:'Quadrinho 4',price:25,img:'ryu.webp'},
+        {name:'Quadrinho 5',price:40,img:'neuroshimahex.jpg'}
     ],
     livros:[
-        {name:'Livro 1',price:45,img:''},
-        {name:'Livro 2',price:60,img:''},
-        {name:'Livro 3',price:50,img:''},
-        {name:'Livro 4',price:70,img:''},
-        {name:'Livro 5',price:65,img:''}
+        {name:'Livro 1',price:45,img:'504.webp'},
+        {name:'Livro 2',price:60,img:'dust.jpg'},
+        {name:'Livro 3',price:50,img:'illimat.webp'},
+        {name:'Livro 4',price:70,img:'ryu.webp'},
+        {name:'Livro 5',price:65,img:'neuroshimahex.jpg'}
     ],
     eletronicos:[
-        {name:'Eletrônico 1',price:120,img:''},
-        {name:'Eletrônico 2',price:250,img:''},
-        {name:'Eletrônico 3',price:180,img:''},
-        {name:'Eletrônico 4',price:300,img:''},
-        {name:'Eletrônico 5',price:220,img:''}
+        {name:'Eletrônico 1',price:120,img:'504.webp'},
+        {name:'Eletrônico 2',price:250,img:'dust.jpg'},
+        {name:'Eletrônico 3',price:180,img:'illimat.webp'},
+        {name:'Eletrônico 4',price:300,img:'ryu.webp'},
+        {name:'Eletrônico 5',price:220,img:'neuroshimahex.jpg'}
     ],
     diversos:[
-        {name:'Diverso 1',price:15,img:''},
-        {name:'Diverso 2',price:40,img:''},
-        {name:'Diverso 3',price:25,img:''},
-        {name:'Diverso 4',price:30,img:''},
-        {name:'Diverso 5',price:35,img:''}
+        {name:'Diverso 1',price:15,img:'504.webp'},
+        {name:'Diverso 2',price:40,img:'dust.jpg'},
+        {name:'Diverso 3',price:25,img:'illimat.webp'},
+        {name:'Diverso 4',price:30,img:'ryu.webp'},
+        {name:'Diverso 5',price:35,img:'neuroshimahex.jpg'}
     ],
     canecas:[
-        {name:'Caneca 1',price:35,img:''},
-        {name:'Caneca 2',price:40,img:''},
-        {name:'Caneca 3',price:38,img:''},
-        {name:'Caneca 4',price:45,img:''},
-        {name:'Caneca 5',price:42,img:''}
+        {name:'Caneca 1',price:35,img:'504.webp'},
+        {name:'Caneca 2',price:40,img:'dust.jpg'},
+        {name:'Caneca 3',price:38,img:'illimat.webp'},
+        {name:'Caneca 4',price:45,img:'ryu.webp'},
+        {name:'Caneca 5',price:42,img:'neuroshimahex.jpg'}
     ],
     cubos:[
-        {name:'Cubo 1',price:50,img:''},
-        {name:'Cubo 2',price:75,img:''},
-        {name:'Cubo 3',price:60,img:''},
-        {name:'Cubo 4',price:80,img:''},
-        {name:'Cubo 5',price:90,img:''}
+        {name:'Cubo 1',price:50,img:'504.webp'},
+        {name:'Cubo 2',price:75,img:'dust.jpg'},
+        {name:'Cubo 3',price:60,img:'illimat.webp'},
+        {name:'Cubo 4',price:80,img:'ryu.webp'},
+        {name:'Cubo 5',price:90,img:'neuroshimahex.jpg'}
     ]
 };
 
