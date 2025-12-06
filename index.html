@@ -18,15 +18,18 @@
 
     /* Cores exclusivas para tags */
     --tag-edicao-limitada:#ff8c42;
+    --tag-edicao-numerada:#ffa500;
     --tag-premium:#f2d600;
-    --tag-out-of-print:#222222;
+    --tag-out-of-print:#111111;  /* preto intenso */
     --tag-novo:#42c5f5;
     --tag-importado:#7f00ff;
     --tag-raro:#ff1493;
-    --tag-rarissimo:#8b0000;
+    --tag-rarissimo:#8b0000;  /* vermelho escuro */
     --tag-expansao:#32cd32;
     --tag-usado:#a52a2a;
-    --tag-edição-numerada:#ffa500;
+
+    /* Cor botão Saiba Mais */
+    --btn-saiba:#f2a65a;
 }
 
 /* Reset e layout */
@@ -49,13 +52,13 @@ header {
 /* Container e grid */
 .container{display:flex;flex:1;max-width:1300px;margin:20px auto;gap:22px;position:relative;}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;flex:1;}
-@media(max-width:1200px){.grid{grid-template-columns:repeat(3,1fr);} }
-@media(max-width:900px){.container{flex-direction:column;}.grid{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:1200px){.grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:900px){.container{flex-direction:column;}.grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:600px){.grid{grid-template-columns:1fr;}}
 
 /* Cards */
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px) scale(0.995);}to{opacity:1;transform:translateY(0) scale(1);} }
-@keyframes glowPulse{0%,100%{box-shadow:0 0 8px var(--glow-color);}50%{box-shadow:0 0 20px 6px var(--glow-color);} }
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px) scale(0.995);}to{opacity:1;transform:translateY(0) scale(1);}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 8px var(--glow-color);}50%{box-shadow:0 0 20px 6px var(--glow-color);}}
 .card{
     background:var(--card-bg);
     border-radius:14px;
@@ -67,6 +70,7 @@ header {
     animation:fadeUp 0.6s cubic-bezier(.2,.9,.2,1) forwards, glowPulse 2.5s ease-in-out infinite;
     max-width: 180px;
     word-wrap: break-word;
+    width: 100%;
 }
 .card:hover{transform:translateY(-8px) scale(1.02);}
 .card img{width:100%;border-radius:10px;margin-bottom:14px;}
@@ -75,15 +79,13 @@ header {
     margin:6px 0;
     font-weight:700;
     color:#e6d0f1;
-    max-height:3em;
-    overflow:hidden;
-    word-break:break-word;
+    word-wrap:break-word;
 }
 
 /* Botões */
 .btn{
-    display:block;
-    margin:10px auto 0 auto;
+    display:inline-block;
+    margin-top:10px;
     padding:12px 22px;
     background:linear-gradient(180deg,var(--btn-bg),#8fc37d);
     color:var(--header-bg);
@@ -94,6 +96,9 @@ header {
     box-shadow:0 6px 14px rgba(133,175,121,0.18);
     font-size:1em;
     transition:transform 0.22s ease, box-shadow 0.22s ease;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
 }
 .btn:hover{transform:scale(1.04);box-shadow:0 12px 26px rgba(133,175,121,0.22);}
 .btn:active{transform:scale(0.96);opacity:0.95;}
@@ -103,11 +108,11 @@ header {
     display:block;
     margin:8px auto 6px auto;
     padding:6px 14px;
-    background: #f2a65a;
+    background: var(--btn-saiba);
     color: var(--header-bg);
     border-radius:10px;
     font-weight:700;
-    font-size:0.9em;
+    font-size:0.85em;
     cursor:pointer;
     text-decoration:none;
 }
@@ -154,6 +159,17 @@ header {
 #home-text{grid-column:1/-1;text-align:center;font-size:1.6em;color:#2c1d2c;padding:60px 20px;white-space:pre-line;line-height:1.6em;margin-left:calc(200px + var(--side-margin)); margin-right:calc(320px + var(--side-margin));}
 @media(max-width:900px){#home-text{margin:0;}}
 
+/* Correção carrinho celular */
+@media(max-width:900px){
+    #cart{
+        position: relative;
+        width: 100%;
+        top: 0;
+        margin-top: 20px;
+        max-height: none;
+    }
+    .container{flex-direction: column;}
+}
 </style>
 </head>
 <body>
@@ -196,65 +212,17 @@ const products={
     {name:'Dust', price:250, img:'', tags:['Importado','Raro'], link:'https://ludopedia.com.br/jogo/dust'},
     {name:'504', price:200, img:'', tags:['Importado'], link:'https://ludopedia.com.br/jogo/504'},
     {name:'Illimat', price:150, img:'', tags:['Importado','Raro','Out of Print'], link:'https://ludopedia.com.br/jogo/illimat'},
-    {name:'Neuroshima Hex', price:100, img:'', tags:['Nacional','Out of Print'], link:'https://ludopedia.com.br/jogo/neuroshima-hex-3-0'},
+    {name:'Neuroshima Hex', price:100, img:'', tags:['Nacional','Out of Print'], link:'https://ludopedia.com.br/jogo/neuroshima-hex'},
     {name:'The Lord of The Ice Garden', price:1200, img:'', tags:['Importado','Edição Numerada','Edição Limitada','Out of Print','Raríssimo'], link:'https://ludopedia.com.br/jogo/the-lord-of-the-ice-garden'}
   ],
-  pacotes:[
-    {name:'Pacote 1', price:100, img:'', tags:[], link:'#'},
-    {name:'Pacote 2', price:120, img:'', tags:[], link:'#'},
-    {name:'Pacote 3', price:150, img:'', tags:[], link:'#'},
-    {name:'Pacote 4', price:180, img:'', tags:[], link:'#'},
-    {name:'Pacote 5', price:200, img:'', tags:[], link:'#'}
-  ],
-  mangas:[
-    {name:'Mangá 1', price:50, img:'', tags:[], link:'#'},
-    {name:'Mangá 2', price:60, img:'', tags:[], link:'#'},
-    {name:'Mangá 3', price:70, img:'', tags:[], link:'#'},
-    {name:'Mangá 4', price:80, img:'', tags:[], link:'#'},
-    {name:'Mangá 5', price:90, img:'', tags:[], link:'#'}
-  ],
-  quadrinhos:[
-    {name:'Quadrinho 1', price:40, img:'', tags:[], link:'#'},
-    {name:'Quadrinho 2', price:50, img:'', tags:[], link:'#'},
-    {name:'Quadrinho 3', price:60, img:'', tags:[], link:'#'},
-    {name:'Quadrinho 4', price:70, img:'', tags:[], link:'#'},
-    {name:'Quadrinho 5', price:80, img:'', tags:[], link:'#'}
-  ],
-  livros:[
-    {name:'Livro 1', price:30, img:'', tags:[], link:'#'},
-    {name:'Livro 2', price:40, img:'', tags:[], link:'#'},
-    {name:'Livro 3', price:50, img:'', tags:[], link:'#'},
-    {name:'Livro 4', price:60, img:'', tags:[], link:'#'},
-    {name:'Livro 5', price:70, img:'', tags:[], link:'#'}
-  ],
-  eletronicos:[
-    {name:'Eletrônico 1', price:100, img:'', tags:[], link:'#'},
-    {name:'Eletrônico 2', price:150, img:'', tags:[], link:'#'},
-    {name:'Eletrônico 3', price:200, img:'', tags:[], link:'#'},
-    {name:'Eletrônico 4', price:250, img:'', tags:[], link:'#'},
-    {name:'Eletrônico 5', price:300, img:'', tags:[], link:'#'}
-  ],
-  diversos:[
-    {name:'Diverso 1', price:20, img:'', tags:[], link:'#'},
-    {name:'Diverso 2', price:30, img:'', tags:[], link:'#'},
-    {name:'Diverso 3', price:40, img:'', tags:[], link:'#'},
-    {name:'Diverso 4', price:50, img:'', tags:[], link:'#'},
-    {name:'Diverso 5', price:60, img:'', tags:[], link:'#'}
-  ],
-  canecas:[
-    {name:'Caneca 1', price:25, img:'', tags:[], link:'#'},
-    {name:'Caneca 2', price:30, img:'', tags:[], link:'#'},
-    {name:'Caneca 3', price:35, img:'', tags:[], link:'#'},
-    {name:'Caneca 4', price:40, img:'', tags:[], link:'#'},
-    {name:'Caneca 5', price:45, img:'', tags:[], link:'#'}
-  ],
-  cubos:[
-    {name:'Cubo 1', price:50, img:'', tags:[], link:'#'},
-    {name:'Cubo 2', price:60, img:'', tags:[], link:'#'},
-    {name:'Cubo 3', price:70, img:'', tags:[], link:'#'},
-    {name:'Cubo 4', price:80, img:'', tags:[], link:'#'},
-    {name:'Cubo 5', price:90, img:'', tags:[], link:'#'}
-  ]
+  pacotes:[ /* 5 produtos teste */ {name:'Pacote 1', price:500, img:'', tags:[], link:'#'}, {name:'Pacote 2', price:600, img:'', tags:[], link:'#'}, {name:'Pacote 3', price:700, img:'', tags:[], link:'#'}, {name:'Pacote 4', price:800, img:'', tags:[], link:'#'}, {name:'Pacote 5', price:900, img:'', tags:[], link:'#'}],
+  mangas:[ {name:'Mangá 1', price:50, img:'', tags:[], link:'#'}, {name:'Mangá 2', price:60, img:'', tags:[], link:'#'}, {name:'Mangá 3', price:70, img:'', tags:[], link:'#'}, {name:'Mangá 4', price:80, img:'', tags:[], link:'#'}, {name:'Mangá 5', price:90, img:'', tags:[], link:'#'}],
+  quadrinhos:[ {name:'Quadrinho 1', price:35, img:'', tags:[], link:'#'}, {name:'Quadrinho 2', price:40, img:'', tags:[], link:'#'}, {name:'Quadrinho 3', price:45, img:'', tags:[], link:'#'}, {name:'Quadrinho 4', price:50, img:'', tags:[], link:'#'}, {name:'Quadrinho 5', price:55, img:'', tags:[], link:'#'}],
+  livros:[ {name:'Livro 1', price:25, img:'', tags:[], link:'#'}, {name:'Livro 2', price:30, img:'', tags:[], link:'#'}, {name:'Livro 3', price:35, img:'', tags:[], link:'#'}, {name:'Livro 4', price:40, img:'', tags:[], link:'#'}, {name:'Livro 5', price:45, img:'', tags:[], link:'#'}],
+  eletronicos:[ {name:'Eletrônico 1', price:200, img:'', tags:[], link:'#'}, {name:'Eletrônico 2', price:300, img:'', tags:[], link:'#'}, {name:'Eletrônico 3', price:400, img:'', tags:[], link:'#'}, {name:'Eletrônico 4', price:500, img:'', tags:[], link:'#'}, {name:'Eletrônico 5', price:600, img:'', tags:[], link:'#'}],
+  diversos:[ {name:'Diverso 1', price:15, img:'', tags:[], link:'#'}, {name:'Diverso 2', price:20, img:'', tags:[], link:'#'}, {name:'Diverso 3', price:25, img:'', tags:[], link:'#'}, {name:'Diverso 4', price:30, img:'', tags:[], link:'#'}, {name:'Diverso 5', price:35, img:'', tags:[], link:'#'}],
+  canecas:[ {name:'Caneca 1', price:40, img:'', tags:[], link:'#'}, {name:'Caneca 2', price:45, img:'', tags:[], link:'#'}, {name:'Caneca 3', price:50, img:'', tags:[], link:'#'}, {name:'Caneca 4', price:55, img:'', tags:[], link:'#'}, {name:'Caneca 5', price:60, img:'', tags:[], link:'#'}],
+  cubos:[ {name:'Cubo 1', price:35, img:'', tags:[], link:'#'}, {name:'Cubo 2', price:40, img:'', tags:[], link:'#'}, {name:'Cubo 3', price:45, img:'', tags:[], link:'#'}, {name:'Cubo 4', price:50, img:'', tags:[], link:'#'}, {name:'Cubo 5', price:55, img:'', tags:[], link:'#'}]
 };
 
 function showCategory(cat){
@@ -281,9 +249,10 @@ Ah, já ia me esquecendo, mas não vou por imagem por que ia ser muito trabalhos
 
     let tagsHTML = '';
     p.tags.forEach(tag=>{
-      let color='';
+      let color = '';
       switch(tag.toLowerCase()){
         case 'edição limitada': color='var(--tag-edicao-limitada)'; break;
+        case 'edição numerada': color='var(--tag-edicao-numerada)'; break;
         case 'premium': color='var(--tag-premium)'; break;
         case 'out of print': color='var(--tag-out-of-print)'; break;
         case 'novo': color='var(--tag-novo)'; break;
@@ -293,7 +262,6 @@ Ah, já ia me esquecendo, mas não vou por imagem por que ia ser muito trabalhos
         case '+ expansão': color='var(--tag-expansao)'; break;
         case 'usado': color='var(--tag-usado)'; break;
         case 'nacional': color='#4caf50'; break;
-        case 'edição numerada': color='var(--tag-edição-numerada)'; break;
         default: color='#888'; break;
       }
       tagsHTML += `<span class="tag" style="background:${color}">${tag}</span>`;
@@ -321,7 +289,6 @@ function addToCart(name, price, img, btn){
   showToast();
   openCart();
 }
-
 function removeFromCart(name){ cart=cart.filter(i=>i.name!==name); updateCart(); saveCart(); }
 function changeQuantity(name, delta){ const item=cart.find(i=>i.name===name); if(!item)return; item.quantity+=delta; if(item.quantity<1)item.quantity=1; updateCart(); saveCart(); }
 
