@@ -20,11 +20,11 @@
     --tag-edicao-limitada:#ff8c42;
     --tag-edicao-numerada:#ffa500;
     --tag-premium:#f2d600;
-    --tag-out-of-print:#111111;  /* preto intenso */
+    --tag-out-of-print:#111111;
     --tag-novo:#42c5f5;
     --tag-importado:#7f00ff;
     --tag-raro:#ff1493;
-    --tag-rarissimo:#8b0000;  /* vermelho escuro */
+    --tag-rarissimo:#8b0000;
     --tag-expansao:#32cd32;
     --tag-usado:#a52a2a;
 
@@ -52,13 +52,13 @@ header {
 /* Container e grid */
 .container{display:flex;flex:1;max-width:1300px;margin:20px auto;gap:22px;position:relative;}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;flex:1;}
-@media(max-width:1200px){.grid{grid-template-columns:repeat(3,1fr);}}
-@media(max-width:900px){.container{flex-direction:column;}.grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:600px){.grid{grid-template-columns:1fr;}}
+@media(max-width:1200px){.grid{grid-template-columns:repeat(3,1fr);} }
+@media(max-width:900px){.container{flex-direction:column;}.grid{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:600px){.grid{grid-template-columns:1fr;} }
 
 /* Cards */
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px) scale(0.995);}to{opacity:1;transform:translateY(0) scale(1);}}
-@keyframes glowPulse{0%,100%{box-shadow:0 0 8px var(--glow-color);}50%{box-shadow:0 0 20px 6px var(--glow-color);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px) scale(0.995);}to{opacity:1;transform:translateY(0) scale(1);} }
+@keyframes glowPulse{0%,100%{box-shadow:0 0 8px var(--glow-color);}50%{box-shadow:0 0 20px 6px var(--glow-color);} }
 .card{
     background:var(--card-bg);
     border-radius:14px;
@@ -125,6 +125,7 @@ header {
     border-radius:8px;
     font-size:0.75em;
     font-weight:700;
+    cursor:pointer;
 }
 
 /* Barra lateral */
@@ -133,7 +134,7 @@ header {
 #sidebar button:hover{background:#8fc37d;}
 #sidebar button:first-child{background:#f0c75e;color:#2c1d2c;}
 #sidebar button:first-child:hover{background:#e6b94a;}
-@media(max-width:900px){#sidebar{position:relative;top:0;width:100%;flex-direction:row;overflow-x:auto;max-height:none;padding:10px;gap:8px;}#sidebar button{flex:0 0 auto;width:auto;white-space:nowrap;}}
+@media(max-width:900px){#sidebar{position:relative;top:0;width:100%;flex-direction:row;overflow-x:auto;max-height:none;padding:10px;gap:8px;}#sidebar button{flex:0 0 auto;width:auto;white-space:nowrap;} }
 
 /* Carrinho */
 #cart{width:320px;background:var(--cart-bg);padding:16px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.18);position:fixed;top:120px;right:var(--side-margin);color:white;display:flex;flex-direction:column;max-height:calc(100vh - 140px);}
@@ -215,41 +216,28 @@ const products={
     {name:'Neuroshima Hex', price:100, img:'', tags:['Nacional','Out of Print'], link:'https://ludopedia.com.br/jogo/neuroshima-hex-3-0'},
     {name:'The Lord of The Ice Garden', price:1200, img:'', tags:['Importado','Edição Numerada','Edição Limitada','Out of Print','Raríssimo'], link:'https://ludopedia.com.br/jogo/the-lord-of-the-ice-garden'}
   ],
-  pacotes:[ /* 5 produtos teste */ {name:'Pacote 1', price:500, img:'', tags:[], link:'#'}, {name:'Pacote 2', price:600, img:'', tags:[], link:'#'}, {name:'Pacote 3', price:700, img:'', tags:[], link:'#'}, {name:'Pacote 4', price:800, img:'', tags:[], link:'#'}, {name:'Pacote 5', price:900, img:'', tags:[], link:'#'}],
-  mangas:[ {name:'Mangá 1', price:50, img:'', tags:[], link:'#'}, {name:'Mangá 2', price:60, img:'', tags:[], link:'#'}, {name:'Mangá 3', price:70, img:'', tags:[], link:'#'}, {name:'Mangá 4', price:80, img:'', tags:[], link:'#'}, {name:'Mangá 5', price:90, img:'', tags:[], link:'#'}],
-  quadrinhos:[ {name:'Quadrinho 1', price:35, img:'', tags:[], link:'#'}, {name:'Quadrinho 2', price:40, img:'', tags:[], link:'#'}, {name:'Quadrinho 3', price:45, img:'', tags:[], link:'#'}, {name:'Quadrinho 4', price:50, img:'', tags:[], link:'#'}, {name:'Quadrinho 5', price:55, img:'', tags:[], link:'#'}],
-  livros:[ {name:'Livro 1', price:25, img:'', tags:[], link:'#'}, {name:'Livro 2', price:30, img:'', tags:[], link:'#'}, {name:'Livro 3', price:35, img:'', tags:[], link:'#'}, {name:'Livro 4', price:40, img:'', tags:[], link:'#'}, {name:'Livro 5', price:45, img:'', tags:[], link:'#'}],
-  eletronicos:[ {name:'Eletrônico 1', price:200, img:'', tags:[], link:'#'}, {name:'Eletrônico 2', price:300, img:'', tags:[], link:'#'}, {name:'Eletrônico 3', price:400, img:'', tags:[], link:'#'}, {name:'Eletrônico 4', price:500, img:'', tags:[], link:'#'}, {name:'Eletrônico 5', price:600, img:'', tags:[], link:'#'}],
-  diversos:[ {name:'Diverso 1', price:15, img:'', tags:[], link:'#'}, {name:'Diverso 2', price:20, img:'', tags:[], link:'#'}, {name:'Diverso 3', price:25, img:'', tags:[], link:'#'}, {name:'Diverso 4', price:30, img:'', tags:[], link:'#'}, {name:'Diverso 5', price:35, img:'', tags:[], link:'#'}],
-  canecas:[ {name:'Caneca 1', price:40, img:'', tags:[], link:'#'}, {name:'Caneca 2', price:45, img:'', tags:[], link:'#'}, {name:'Caneca 3', price:50, img:'', tags:[], link:'#'}, {name:'Caneca 4', price:55, img:'', tags:[], link:'#'}, {name:'Caneca 5', price:60, img:'', tags:[], link:'#'}],
-  cubos:[ {name:'Cubo 1', price:35, img:'', tags:[], link:'#'}, {name:'Cubo 2', price:40, img:'', tags:[], link:'#'}, {name:'Cubo 3', price:45, img:'', tags:[], link:'#'}, {name:'Cubo 4', price:50, img:'', tags:[], link:'#'}, {name:'Cubo 5', price:55, img:'', tags:[], link:'#'}]
+  pacotes:[{name:'Pacote 1', price:500, img:'', tags:[], link:'#'}, {name:'Pacote 2', price:600, img:'', tags:[], link:'#'}, {name:'Pacote 3', price:700, img:'', tags:[], link:'#'}, {name:'Pacote 4', price:800, img:'', tags:[], link:'#'}, {name:'Pacote 5', price:900, img:'', tags:[], link:'#'}],
+  mangas:[{name:'Mangá 1', price:50, img:'', tags:[], link:'#'}, {name:'Mangá 2', price:60, img:'', tags:[], link:'#'}, {name:'Mangá 3', price:70, img:'', tags:[], link:'#'}, {name:'Mangá 4', price:80, img:'', tags:[], link:'#'}, {name:'Mangá 5', price:90, img:'', tags:[], link:'#'}],
+  quadrinhos:[{name:'Quadrinho 1', price:35, img:'', tags:[], link:'#'}, {name:'Quadrinho 2', price:40, img:'', tags:[], link:'#'}, {name:'Quadrinho 3', price:45, img:'', tags:[], link:'#'}, {name:'Quadrinho 4', price:50, img:'', tags:[], link:'#'}, {name:'Quadrinho 5', price:55, img:'', tags:[], link:'#'}],
+  livros:[{name:'Livro 1', price:25, img:'', tags:[], link:'#'}, {name:'Livro 2', price:30, img:'', tags:[], link:'#'}, {name:'Livro 3', price:35, img:'', tags:[], link:'#'}, {name:'Livro 4', price:40, img:'', tags:[], link:'#'}, {name:'Livro 5', price:45, img:'', tags:[], link:'#'}],
+  eletronicos:[{name:'Eletrônico 1', price:200, img:'', tags:[], link:'#'}, {name:'Eletrônico 2', price:300, img:'', tags:[], link:'#'}, {name:'Eletrônico 3', price:400, img:'', tags:[], link:'#'}, {name:'Eletrônico 4', price:500, img:'', tags:[], link:'#'}, {name:'Eletrônico 5', price:600, img:'', tags:[], link:'#'}],
+  diversos:[{name:'Diverso 1', price:15, img:'', tags:[], link:'#'}, {name:'Diverso 2', price:20, img:'', tags:[], link:'#'}, {name:'Diverso 3', price:25, img:'', tags:[], link:'#'}, {name:'Diverso 4', price:30, img:'', tags:[], link:'#'}, {name:'Diverso 5', price:35, img:'', tags:[], link:'#'}],
+  canecas:[{name:'Caneca 1', price:40, img:'', tags:[], link:'#'}, {name:'Caneca 2', price:45, img:'', tags:[], link:'#'}, {name:'Caneca 3', price:50, img:'', tags:[], link:'#'}, {name:'Caneca 4', price:55, img:'', tags:[], link:'#'}, {name:'Caneca 5', price:60, img:'', tags:[], link:'#'}],
+  cubos:[{name:'Cubo 1', price:35, img:'', tags:[], link:'#'}, {name:'Cubo 2', price:40, img:'', tags:[], link:'#'}, {name:'Cubo 3', price:45, img:'', tags:[], link:'#'}, {name:'Cubo 4', price:50, img:'', tags:[], link:'#'}, {name:'Cubo 5', price:55, img:'', tags:[], link:'#'}]
 };
 
-function showCategory(cat){
+// Renderização genérica
+function renderProducts(list){
   const grid=document.getElementById('product-grid');
   grid.innerHTML='';
-  if(cat==='all'){
-    grid.innerHTML=`<div id="home-text">
-O que temos aqui? Muita coisa. 
-
-Tem jogos, em livros, tem até Walkie Talkie!
-
-Muitas coisas precisam achar novos donos por que já não posso mais tê-las, e essa vão ser no melhor preço possível.
-
-Já outras coisas... Tem coisas que realmente não quero me desfazer, mas se aparecer o preço justo pra que isso aconteça, então era pra ser. Então dá uma olhada, e se algo te interessar, clica ali em contato e me chama.
-
-Ah, já ia me esquecendo, mas não vou por imagem por que ia ser muito trabalhoso, se precisar de foto, clica ali embaixo e me chama.
-    </div>`;
-    return;
-  }
-  (products[cat]||[]).forEach((p,i)=>{
+  list.forEach((p,i)=>{
     const card=document.createElement('div');
     card.className='card';
     card.style.animationDelay=(i*0.08)+'s';
 
     let tagsHTML = '';
     p.tags.forEach(tag=>{
-      let color = '';
+      let color='';
       switch(tag.toLowerCase()){
         case 'edição limitada': color='var(--tag-edicao-limitada)'; break;
         case 'edição numerada': color='var(--tag-edicao-numerada)'; break;
@@ -264,7 +252,7 @@ Ah, já ia me esquecendo, mas não vou por imagem por que ia ser muito trabalhos
         case 'nacional': color='#4caf50'; break;
         default: color='#888'; break;
       }
-      tagsHTML += `<span class="tag" style="background:${color}">${tag}</span>`;
+      tagsHTML += `<span class="tag" style="background:${color}" onclick="showByTag('${tag}')">${tag}</span>`;
     });
 
     card.innerHTML=`
@@ -279,69 +267,71 @@ Ah, já ia me esquecendo, mas não vou por imagem por que ia ser muito trabalhos
   });
 }
 
-/* Carrinho */
-function addToCart(name, price, img, btn){
-  const existing = cart.find(i=>i.name===name);
-  if(existing) existing.quantity++;
-  else cart.push({name,price,quantity:1});
-  updateCart();
-  saveCart();
-  showToast();
-  openCart();
+// Filtrar categoria
+function showCategory(cat){
+  if(cat==='all'){
+    const allProducts = Object.values(products).flat();
+    renderProducts(allProducts);
+  }else{
+    renderProducts(products[cat]||[]);
+  }
 }
-function removeFromCart(name){ cart=cart.filter(i=>i.name!==name); updateCart(); saveCart(); }
-function changeQuantity(name, delta){ const item=cart.find(i=>i.name===name); if(!item)return; item.quantity+=delta; if(item.quantity<1)item.quantity=1; updateCart(); saveCart(); }
 
-function updateCart(){
-  const container=document.getElementById('cart-items');
-  container.innerHTML='';
+// Filtrar por tag
+function showByTag(tagName){
+  const allProducts = Object.values(products).flat();
+  const filtered = allProducts.filter(p => 
+    p.tags.some(t => t.toLowerCase() === tagName.toLowerCase())
+  );
+  renderProducts(filtered);
+}
+
+// Carrinho
+function addToCart(name, price, img, btn){
+  cart.push({name, price, img});
+  saveCart();
+  renderCart();
+  showToast();
+}
+
+function renderCart(){
+  const cartItems=document.getElementById('cart-items');
+  cartItems.innerHTML='';
   let total=0;
-  cart.forEach(item=>{
-    const li=document.createElement('li'); li.className='cart-item';
+  cart.forEach((item,i)=>{
+    total+=item.price;
+    const li=document.createElement('li');
+    li.className='cart-item';
     li.innerHTML=`
       <div class="cart-details">
-        <p title="${item.name}">${item.name}</p>
-        <p>R$${item.price.toFixed(2)} x${item.quantity} = R$${(item.price*item.quantity).toFixed(2)}</p>
-        <div class="quantity-controls">
-          <button onclick="changeQuantity('${item.name}',-1)">−</button>
-          <span>${item.quantity}</span>
-          <button onclick="changeQuantity('${item.name}',1)">+</button>
-        </div>
+        <p>${item.name}</p>
+        <p>R$${item.price.toFixed(2)}</p>
       </div>
-      <div>
-        <button class="remove-btn" onclick="removeFromCart('${item.name}')">Remover</button>
-      </div>
+      <button class="remove-btn" onclick="removeFromCart(${i})">X</button>
     `;
-    container.appendChild(li);
-    total+=item.price*item.quantity;
+    cartItems.appendChild(li);
   });
-  document.getElementById('cart-total').textContent=`Total: R$${total.toFixed(2)}`;
+  document.getElementById('cart-total').textContent='Total: R$'+total.toFixed(2);
 }
 
-function checkout(){
-  if(cart.length===0){ alert('Carrinho vazio!'); return; }
-  let msg="Olá! Quero comprar:\n";
-  cart.forEach(i=>msg+=`- ${i.name} x${i.quantity} = R$${(i.price*i.quantity).toFixed(2)}\n`);
-  const total=cart.reduce((s,i)=>s+i.price*i.quantity,0);
-  msg+=`Total: R$${total.toFixed(2)}`;
-  const phone='5586995586252';
-  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,'_blank');
+function removeFromCart(index){
+  cart.splice(index,1);
+  saveCart();
+  renderCart();
 }
 
-function openCart(){ document.getElementById('cart').classList.add('open'); }
+function checkout(){alert('Checkout ainda não implementado!');}
 
-/* Toast */
+// Toast
 function showToast(){
   const toast=document.getElementById('toast');
-  toast.textContent="Produto adicionado ao carrinho";
   toast.style.opacity='1';
-  setTimeout(()=>{toast.style.opacity='0';},1400);
+  setTimeout(()=>{toast.style.opacity='0';},1600);
 }
 
-/* Inicializa */
-showCategory('jogos');
-updateCart();
-if(cart.length>0) openCart();
+// Inicialização
+showCategory('all');
+renderCart();
 </script>
 
 </body>
