@@ -6,30 +6,31 @@
 <title>Arcádia</title>
 <style>
 :root{
-  --header-bg:#2c1d2c;
-  --accent-green:#a5d194;
-  --card-bg:#7f416d;
-  --text-dark:#2c1d2c;
-  --cart-bg:#332c3b;
-  --cart-accent:#915e91;
-  --btn-bg:#a5d194;
-  --glow-color: rgba(145,94,145,0.6);
-  --side-margin: 20px;
+    --header-bg:#2c1d2c;
+    --accent-green:#a5d194;
+    --card-bg:#7f416d;
+    --text-dark:#2c1d2c;
+    --cart-bg:#332c3b;
+    --cart-accent:#915e91;
+    --btn-bg:#a5d194;
+    --glow-color: rgba(145,94,145,0.6);
+    --side-margin: 20px;
 
-  /* Cores exclusivas para tags */
-  --tag-edicao-limitada:#ff8c42;
-  --tag-premium:#f2d600;
-  --tag-out-of-print:#111111;
-  --tag-novo:#42c5f5;
-  --tag-importado:#7f00ff;
-  --tag-raro:#ff1493;
-  --tag-rarissimo:#800020;
-  --tag-expansao:#32cd32;
-  --tag-usado:#888888;
-  --tag-edicao-numerada:#ffa500;
+    /* Cores exclusivas para tags */
+    --tag-edicao-limitada:#ff8c42;
+    --tag-premium:#f2d600;
+    --tag-out-of-print:#111111; /* Preto próximo */
+    --tag-novo:#42c5f5;
+    --tag-importado:#7f00ff;
+    --tag-raro:#ff1493;
+    --tag-rarissimo:#800020; /* Vinho */
+    --tag-expansao:#32cd32;
+    --tag-usado:#808080; /* Cinza */
+    --tag-nacional:#4caf50;
+    --tag-edicao-numerada:#ffbf00; /* Mais chamativo */
 
-  /* Cor botão Saiba Mais */
-  --btn-saiba:#f2a65a;
+    /* Cor botão Saiba Mais */
+    --btn-saiba:#f2a65a;
 }
 
 /* Reset e layout */
@@ -38,12 +39,12 @@ body{margin:0;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background
 
 /* Header só com logo */
 header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  background: var(--header-bg);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: var(--header-bg);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
 }
 #header-logo { height: 70px; }
 @media(max-width:900px){ #header-logo{height:50px;} }
@@ -52,137 +53,115 @@ header {
 /* Container e grid */
 .container{display:flex;flex:1;max-width:1300px;margin:20px auto;gap:22px;position:relative;}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;flex:1;}
-@media(max-width:1200px){.grid{grid-template-columns:repeat(3,1fr);}}
-@media(max-width:900px){.container{flex-direction:column;}.grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:600px){.grid{grid-template-columns:1fr;}}
+@media(max-width:1200px){.grid{grid-template-columns:repeat(3,1fr);} }
+@media(max-width:900px){.container{flex-direction:column;}.grid{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:600px){.grid{grid-template-columns:1fr;} }
 
 /* Cards */
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px) scale(0.995);}to{opacity:1;transform:translateY(0) scale(1);}}
-@keyframes glowPulse{0%,100%{box-shadow:0 0 8px var(--glow-color);}50%{box-shadow:0 0 20px 6px var(--glow-color);}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 8px var(--glow-color);}50%{box-shadow:0 0 20px 6px var(--glow-color);} }
 .card{
-  background:var(--card-bg);
-  border-radius:14px;
-  padding:18px;
-  text-align:center;
-  color:white;
-  transition:transform 0.25s, box-shadow 0.25s;
-  opacity:0;
-  animation:fadeUp 0.6s cubic-bezier(.2,.9,.2,1) forwards, glowPulse 2.5s ease-in-out infinite;
-  max-width:180px;
-  word-wrap:break-word;
+    background:var(--card-bg);
+    border-radius:14px;
+    padding:18px;
+    text-align:center;
+    color:white;
+    transition:transform 0.25s, box-shadow 0.25s;
+    opacity:0;
+    animation:fadeUp 0.6s cubic-bezier(.2,.9,.2,1) forwards, glowPulse 2.5s ease-in-out infinite;
+    max-width: 180px;
+    word-wrap: break-word;
 }
 .card:hover{transform:translateY(-8px) scale(1.02);}
 .card img{width:100%;border-radius:10px;margin-bottom:14px;}
 .card h3{
-  font-size:1.15em;
-  margin:6px 0;
-  font-weight:700;
-  color:#e6d0f1;
-  max-height:3em;
-  overflow:hidden;
+    font-size:1.15em;
+    margin:6px 0;
+    font-weight:700;
+    color:#e6d0f1;
+    max-height:3em;
+    overflow:hidden;
 }
 
 /* Botões */
 .btn{
-  display:inline-block;
-  margin-top:10px;
-  padding:12px 22px;
-  background:linear-gradient(180deg,var(--btn-bg),#8fc37d);
-  color:var(--header-bg);
-  border-radius:14px;
-  font-weight:800;
-  cursor:pointer;
-  border:none;
-  box-shadow:0 6px 14px rgba(133,175,121,0.18);
-  font-size:1em;
-  transition:transform 0.22s ease,box-shadow 0.22s ease;
-  display:block;
-  margin-left:auto;
-  margin-right:auto;
+    display:inline-block;
+    margin-top:10px;
+    padding:12px 22px;
+    background:linear-gradient(180deg,var(--btn-bg),#8fc37d);
+    color:var(--header-bg);
+    border-radius:14px;
+    font-weight:800;
+    cursor:pointer;
+    border:none;
+    box-shadow:0 6px 14px rgba(133,175,121,0.18);
+    font-size:1em;
+    transition:transform 0.22s ease, box-shadow 0.22s ease;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
 }
 .btn:hover{transform:scale(1.04);box-shadow:0 12px 26px rgba(133,175,121,0.22);}
 .btn:active{transform:scale(0.96);opacity:0.95;}
 
 /* Botão Saiba Mais */
 .btn-saiba{
-  display:block;
-  margin:8px auto 6px auto;
-  padding:8px 16px;
-  background:var(--btn-saiba);
-  color:var(--header-bg);
-  border-radius:10px;
-  font-weight:700;
-  font-size:0.9em;
-  cursor:pointer;
-  text-decoration:none;
+    display:block;
+    margin:8px auto 6px auto;
+    padding:8px 16px;
+    background: var(--btn-saiba);
+    color: var(--header-bg);
+    border-radius:10px;
+    font-weight:700;
+    font-size:0.9em;
+    cursor:pointer;
+    text-decoration:none;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.btn-saiba:hover{
+    transform: scale(1.04);
+    box-shadow: 0 6px 14px rgba(133,175,121,0.18);
+}
+.btn-saiba:active{
+    transform: scale(0.96);
+    opacity: 0.95;
 }
 
 /* Tags */
 .tag{
-  display:inline-block;
-  padding:3px 8px;
-  margin:2px 2px 6px 2px;
-  border-radius:8px;
-  font-size:0.75em;
-  font-weight:700;
+    display:inline-block;
+    padding:3px 8px;
+    margin:2px 2px 6px 2px;
+    border-radius:8px;
+    font-size:0.75em;
+    font-weight:700;
 }
 
 /* Barra lateral */
-#sidebar{
-  width:200px;
-  position:fixed;
-  top:120px;
-  left:var(--side-margin);
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-  padding:10px;
-  max-height:calc(100vh - 140px);
-  overflow-y:auto;
-}
-#sidebar button{
-  width:calc(100% - 20px);
-  font-size:1.15em;
-  background:var(--accent-green);
-  color:var(--header-bg);
-  border:none;
-  padding:12px;
-  border-radius:10px;
-  font-weight:700;
-  cursor:pointer;
-  transition:0.2s;
-}
+#sidebar{width:200px;position:fixed;top:120px;left:var(--side-margin);display:flex;flex-direction:column;gap:16px;padding:10px;max-height:calc(100vh - 140px);overflow-y:auto;}
+#sidebar button{width:calc(100% - 20px);font-size:1.15em;background:var(--accent-green);color:var(--header-bg);border:none;padding:12px;border-radius:10px;font-weight:700;cursor:pointer;transition:0.2s;}
 #sidebar button:hover{background:#8fc37d;}
 #sidebar button:first-child{background:#f0c75e;color:#2c1d2c;}
 #sidebar button:first-child:hover{background:#e6b94a;}
 @media(max-width:900px){
-  #sidebar{
-    position:relative;
-    top:0;
-    width:100%;
-    flex-direction:row;
-    overflow-x:auto;
-    max-height:none;
-    padding:10px;
-    gap:8px;
-  }
+  #sidebar{position:relative;top:0;width:100%;flex-direction:row;overflow-x:auto;max-height:none;padding:10px;gap:8px;}
   #sidebar button{flex:0 0 auto;width:auto;white-space:nowrap;}
 }
 
 /* Carrinho */
 #cart{
-  width:320px;
-  background:var(--cart-bg);
-  padding:16px;
-  border-radius:12px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.18);
-  position:fixed;
-  top:120px;
-  right:var(--side-margin);
-  color:white;
-  display:flex;
-  flex-direction:column;
-  max-height:calc(100vh - 140px);
+    width:320px;
+    background:var(--cart-bg);
+    padding:16px;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.18);
+    position:fixed;
+    top:120px;
+    right:var(--side-margin);
+    color:white;
+    display:flex;
+    flex-direction:column;
+    max-height:calc(100vh - 140px);
 }
 #cart h3{margin:6px 0 12px;text-align:center;color:var(--accent-green);}
 #cart-items{list-style:none;padding:0;margin:0;overflow-y:auto;flex:1;}
@@ -200,34 +179,11 @@ header {
 .checkout-btn:hover{transform:scale(1.02);}
 
 /* Toast */
-#toast{
-  position:fixed;
-  bottom:40px;
-  left:50%;
-  transform:translateX(-50%);
-  background:var(--accent-green);
-  color:var(--header-bg);
-  padding:12px 20px;
-  border-radius:12px;
-  font-weight:800;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity 0.4s;
-}
+#toast{position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:var(--accent-green);color:var(--header-bg);padding:12px 20px;border-radius:12px;font-weight:800;opacity:0;pointer-events:none;transition:opacity 0.4s;}
 
 /* Página inicial texto grande */
-#home-text{
-  grid-column:1/-1;
-  text-align:center;
-  font-size:1.6em;
-  color:#2c1d2c;
-  padding:60px 20px;
-  white-space:pre-line;
-  line-height:1.6em;
-  margin-left:calc(200px + var(--side-margin));
-  margin-right:calc(320px + var(--side-margin));
-}
-@media(max-width:900px){#home-text{margin:0;}}
+#home-text{grid-column:1/-1;text-align:center;font-size:1.6em;color:#2c1d2c;padding:60px 20px;white-space:pre-line;line-height:1.6em;margin-left:calc(200px + var(--side-margin)); margin-right:calc(320px + var(--side-margin));}
+@media(max-width:900px){#home-text{margin:0;} #cart{position:relative;width:100%;top:auto;right:auto;margin-top:20px;}}
 </style>
 </head>
 <body>
@@ -243,7 +199,7 @@ header {
   <button onclick="showCategory('mangas')">Mangás</button>
   <button onclick="showCategory('quadrinhos')">Quadrinhos</button>
   <button onclick="showCategory('livros')">Livros</button>
-  <button onclick="showCategory('RPG')">RPG</button>
+  <button onclick="showCategory('rpg')">RPG</button>
   <button onclick="showCategory('diversos')">Diversos</button>
   <button onclick="showCategory('canecas')">Canecas</button>
   <button onclick="showCategory('cubos')">Cubos Mágicos</button>
@@ -262,34 +218,10 @@ header {
 <div id="toast">Produto adicionado ao carrinho</div>
 
 <script>
-// helper para tags
-function getTagColor(tag){
-  switch(tag.toLowerCase()){
-    case 'edição limitada': return 'var(--tag-edicao-limitada)';
-    case 'premium': return 'var(--tag-premium)';
-    case 'out of print': return 'var(--tag-out-of-print)';
-    case 'novo': return 'var(--tag-novo)';
-    case 'importado': return 'var(--tag-importado)';
-    case 'raro': return 'var(--tag-raro)';
-    case 'raríssimo': return 'var(--tag-rarissimo)';
-    case '+ expansão': return 'var(--tag-expansao)';
-    case 'usado': return 'var(--tag-usado)';
-    case 'nacional': return '#4caf50';
-    case 'edição numerada': return 'var(--tag-edicao-numerada)';
-    default: return '#888';
-  }
-}
+let cart = JSON.parse(localStorage.getItem('arcadia_cart_v7')) || [];
+function saveCart(){ localStorage.setItem('arcadia_cart_v7', JSON.stringify(cart)); }
 
-// busca tags aleatórias
-const availableTags = ['Usado','Out of Print','Raríssimo','Edição Numerada','Novo','Premium','Edição Limitada','Importado','Raro','+ Expansão','Nacional'];
-function getRandomTags(){
-  const count = Math.floor(Math.random()*6)+1;
-  const shuffled = availableTags.sort(()=>0.5 - Math.random());
-  return shuffled.slice(0, count);
-}
-
-// dados dos produtos
-const products = {
+const products={
   jogos:[
     {name:'Dust', price:250, img:'', tags:['Importado','Raro'], link:'https://ludopedia.com.br/jogo/dust'},
     {name:'504', price:200, img:'', tags:['Importado'], link:'https://ludopedia.com.br/jogo/504'},
@@ -297,183 +229,133 @@ const products = {
     {name:'Neuroshina Hex 3.0', price:100, img:'', tags:['Nacional','Out of Print'], link:'https://ludopedia.com.br/jogo/neuroshima-hex-3-0'},
     {name:'The Lord of The Ice Garden', price:1200, img:'', tags:['Importado','Edição Limitada','Edição Numerada','Out of Print','Raríssimo'], link:'https://ludopedia.com.br/jogo/the-lord-of-the-ice-garden'}
   ],
-  pacotes:[
-    {name:'Pacote 1', price:500, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Pacote 2', price:650, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Pacote 3', price:400, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Pacote 4', price:800, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Pacote 5', price:1000, img:'', tags:getRandomTags(), link:'#'}
-  ],
-  mangas:[
-    {name:'Mangá 1', price:50, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Mangá 2', price:70, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Mangá 3', price:30, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Mangá 4', price:90, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Mangá 5', price:120, img:'', tags:getRandomTags(), link:'#'}
-  ],
-  quadrinhos:[
-    {name:'Quadrinho 1', price:60, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Quadrinho 2', price:80, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Quadrinho 3', price:45, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Quadrinho 4', price:110, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Quadrinho 5', price:150, img:'', tags:getRandomTags(), link:'#'}
-  ],
-  livros:[
-    {name:'Livro 1', price:70, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Livro 2', price:90, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Livro 3', price:50, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Livro 4', price:130, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Livro 5', price:160, img:'', tags:getRandomTags(), link:'#'}
-  ],
-  RPG:[
-    {name:'Manual de RPG 1', price:120, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Manual de RPG 2', price:140, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Manual de RPG 3', price:110, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Manual de RPG 4', price:150, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Manual de RPG 5', price:180, img:'', tags:getRandomTags(), link:'#'}
-  ],
-  diversos:[
-    {name:'Diverso 1', price:25, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Diverso 2', price:35, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Diverso 3', price:20, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Diverso 4', price:45, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Diverso 5', price:55, img:'', tags:getRandomTags(), link:'#'}
-  ],
-  canecas:[
-    {name:'Caneca 1', price:40, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Caneca 2', price:60, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Caneca 3', price:35, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Caneca 4', price:70, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Caneca 5', price:80, img:'', tags:getRandomTags(), link:'#'}
-  ],
-  cubos:[
-    {name:'Cubo 1', price:30, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Cubo 2', price:50, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Cubo 3', price:25, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Cubo 4', price:60, img:'', tags:getRandomTags(), link:'#'},
-    {name:'Cubo 5', price:75, img:'', tags:getRandomTags(), link:'#'}
-  ]
+  pacotes:[],
+  mangas:[],
+  quadrinhos:[],
+  livros:[],
+  rpg:[],
+  diversos:[],
+  canecas:[],
+  cubos:[]
 };
 
-// Função para exibir categoria
+// Funções principais
 function showCategory(cat){
-  const grid = document.getElementById('product-grid');
-  grid.innerHTML = '';
+  const grid=document.getElementById('product-grid');
+  grid.innerHTML='';
+  if(cat==='all'){
+    grid.innerHTML=`<div id="home-text">
+O que temos aqui? Muita coisa. 
 
-  if(cat === 'all'){
-    const home = document.createElement('div');
-    home.id = 'home-text';
-    home.innerText = `Bem-vindo à Arcádia!\n\nExplore nossas categorias e descubra nossos produtos.\nSelecione uma categoria no menu para começar.`;
-    grid.appendChild(home);
+Tem jogos, em livros, tem até Walkie Talkie!
+
+Muitas coisas precisam achar novos donos por que já não posso mais tê-las, e essa vão ser no melhor preço possível.
+
+Já outras coisas... Tem coisas que realmente não quero me desfazer, mas se aparecer o preço justo pra que isso aconteça, então era pra ser. Então dá uma olhada, e se algo te interessar, clica ali em contato e me chama.
+
+Ah, já ia me esquecendo, mas não vou por imagem por que ia ser muito trabalhoso, se precisar de foto, clica ali embaixo e me chama.
+    </div>`;
     return;
   }
+  (products[cat]||[]).forEach((p,i)=>{
+    const card=document.createElement('div');
+    card.className='card';
+    card.style.animationDelay=(i*0.08)+'s';
 
-  const list = products[cat] || [];
-  list.forEach((p,i) => {
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.style.animationDelay = (i * 0.08) + 's';
-
-    const imgHTML = p.img ? `<img src="${p.img}" alt="${p.name}">` : '';
     let tagsHTML = '';
-    (p.tags || []).forEach(tag => {
-      tagsHTML += `<span class="tag" style="background:${getTagColor(tag)}">${tag}</span>`;
+    p.tags.forEach(tag=>{
+      let color = '';
+      switch(tag.toLowerCase()){
+        case 'edição limitada': color='var(--tag-edicao-limitada)'; break;
+        case 'premium': color='var(--tag-premium)'; break;
+        case 'out of print': color='var(--tag-out-of-print)'; break;
+        case 'novo': color='var(--tag-novo)'; break;
+        case 'importado': color='var(--tag-importado)'; break;
+        case 'raro': color='var(--tag-raro)'; break;
+        case 'raríssimo': color='var(--tag-rarissimo)'; break;
+        case '+ expansão': color='var(--tag-expansao)'; break;
+        case 'usado': color='var(--tag-usado)'; break;
+        case 'nacional': color='var(--tag-nacional)'; break;
+        case 'edição numerada': color='var(--tag-edicao-numerada)'; break;
+        default: color='#888'; break;
+      }
+      tagsHTML += `<span class="tag" style="background:${color}">${tag}</span>`;
     });
 
-    card.innerHTML = `
-      ${imgHTML}
+    card.innerHTML=`
+      ${p.img?`<img src="${p.img}" alt="${p.name}">`:''}
       <h3>${p.name}</h3>
       <p>R$${p.price.toFixed(2)}</p>
       ${tagsHTML}
       <a href="${p.link}" class="btn-saiba" target="_blank">Saiba Mais</a>
-      <button class="btn" onclick="addToCart('${p.name.replace(/'/g,"\\'")}',${p.price},'${p.img}',this)">Comprar</button>
+      <button class="btn" onclick="addToCart('${p.name}',${p.price},'${p.img}',this)">Comprar</button>
     `;
     grid.appendChild(card);
   });
 }
 
-// Carrinho
-let cart = JSON.parse(localStorage.getItem('arcadia_cart_v7')) || [];
-function saveCart(){ localStorage.setItem('arcadia_cart_v7', JSON.stringify(cart)); }
-
 function addToCart(name, price, img, btn){
-  const existing = cart.find(i => i.name === name);
+  const existing = cart.find(i=>i.name===name);
   if(existing) existing.quantity++;
-  else cart.push({name, price, quantity:1});
+  else cart.push({name,price,quantity:1});
   updateCart();
   saveCart();
   showToast();
   openCart();
 }
 
-function removeFromCart(name){
-  cart = cart.filter(i => i.name !== name);
-  updateCart();
-  saveCart();
-}
-function changeQuantity(name, delta){
-  const item = cart.find(i => i.name === name);
-  if(!item) return;
-  item.quantity += delta;
-  if(item.quantity < 1) item.quantity = 1;
-  updateCart();
-  saveCart();
-}
+function removeFromCart(name){ cart=cart.filter(i=>i.name!==name); updateCart(); saveCart(); }
+function changeQuantity(name, delta){ const item=cart.find(i=>i.name===name); if(!item)return; item.quantity+=delta; if(item.quantity<1)item.quantity=1; updateCart(); saveCart(); }
 
 function updateCart(){
-  const container = document.getElementById('cart-items');
-  container.innerHTML = '';
-  let total = 0;
-  cart.forEach(item => {
-    const li = document.createElement('li');
-    li.className = 'cart-item';
-    li.innerHTML = `
+  const container=document.getElementById('cart-items');
+  container.innerHTML='';
+  let total=0;
+  cart.forEach(item=>{
+    const li=document.createElement('li'); li.className='cart-item';
+    li.innerHTML=`
       <div class="cart-details">
         <p title="${item.name}">${item.name}</p>
-        <p>R$${item.price.toFixed(2)} x${item.quantity} = R$${(item.price * item.quantity).toFixed(2)}</p>
+        <p>R$${item.price.toFixed(2)} x${item.quantity} = R$${(item.price*item.quantity).toFixed(2)}</p>
         <div class="quantity-controls">
-          <button onclick="changeQuantity('${item.name}', -1)">−</button>
+          <button onclick="changeQuantity('${item.name}',-1)">−</button>
           <span>${item.quantity}</span>
-          <button onclick="changeQuantity('${item.name}', 1)">+</button>
+          <button onclick="changeQuantity('${item.name}',1)">+</button>
         </div>
       </div>
       <div>
         <button class="remove-btn" onclick="removeFromCart('${item.name}')">Remover</button>
-      </div>`;
+      </div>
+    `;
     container.appendChild(li);
-    total += item.price * item.quantity;
+    total+=item.price*item.quantity;
   });
-  document.getElementById('cart-total').textContent = `Total: R$${total.toFixed(2)}`;
+  document.getElementById('cart-total').textContent=`Total: R$${total.toFixed(2)}`;
 }
 
 function checkout(){
-  if(cart.length === 0){
-    alert('Carrinho vazio!');
-    return;
-  }
-  let msg = "Olá! Quero comprar:\n";
-  cart.forEach(i => {
-    msg += `- ${i.name} x${i.quantity} = R$${(i.price * i.quantity).toFixed(2)}\n`;
-  });
-  const total = cart.reduce((s,i) => s + i.price * i.quantity, 0);
-  msg += `Total: R$${total.toFixed(2)}`;
-  const phone = '558699000000'; // ajustar telefone
-  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
-}
-function openCart(){
-  document.getElementById('cart').classList.add('open');
+  if(cart.length===0){ alert('Carrinho vazio!'); return; }
+  let msg="Olá! Quero comprar:\n";
+  cart.forEach(i=>msg+=`- ${i.name} x${i.quantity} = R$${(i.price*i.quantity).toFixed(2)}\n`);
+  const total=cart.reduce((s,i)=>s+i.price*i.quantity,0);
+  msg+=`Total: R$${total.toFixed(2)}`;
+  const phone='5586995586252';
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,'_blank');
 }
 
-// Toast
+function openCart(){ document.getElementById('cart').classList.add('open'); }
+
 function showToast(){
-  const toast = document.getElementById('toast');
-  toast.style.opacity = '1';
-  setTimeout(()=>{ toast.style.opacity = '0'; }, 1600);
+  const toast=document.getElementById('toast');
+  toast.textContent="Produto adicionado ao carrinho";
+  toast.style.opacity='1';
+  setTimeout(()=>{toast.style.opacity='0';},1400);
 }
 
-// Inicialização
-showCategory('all');
+/* Inicializa */
+showCategory('jogos');
 updateCart();
+if(cart.length>0) openCart();
 </script>
 
 </body>
