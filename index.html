@@ -28,6 +28,24 @@
     --tag-usado:#808080; /* Cinza */
     --tag-nacional:#4caf50;
     --tag-edicao-numerada:#ffbf00; /* Mais chamativo */
+    --tag-semi-pro:#ff7f50; /* Coral */
+    --tag-moyu:#00ced1;     /* Turquesa */
+    --tag-brinde: #f2a65a;      /* Laranja claro, destaque sem pesar */
+    --tag-danificado: #d9534f;   /* Vermelho queimado, alerta */
+    --tag-sob-demanda: #9b59b6; /* Roxo médio, elegante */
+    --tag-box: #f39c12;          /* Amarelo escuro, marcante */
+    --tag-gadget: #1abc9c;       /* Verde-água, moderno */
+    --tag-eletronico: #3498db;   /* Azul, tecnológico */
+    --tag-completo: #6c5ce7; /* Roxo vibrante, destaque visual */
+    --tag-luxo: #f1c40f;     /* Amarelo ouro, elegante */
+    --tag-capa-dura: #e67e22; /* Laranja queimado, destaque */
+    --tag-panini: #e74c3c;   /* Vermelho vibrante, destaque editorial */
+    --tag-lacrado: #27ae60;  /* Verde intenso, sinalização positiva */
+    --tag-mythos: #8e44ad;   /* Roxo escuro, diferenciado */
+
+
+
+
 
     /* Cor botão Saiba Mais */
     --btn-saiba:#f2a65a;
@@ -79,8 +97,9 @@ header {
     margin:6px 0;
     font-weight:700;
     color:#e6d0f1;
-    max-height:3em;
-    overflow:hidden;
+    white-space: pre-line; /* ← respeita as quebras de linha */
+    max-height: none;
+    overflow: visible;     
 }
 
 /* Botões */
@@ -223,67 +242,128 @@ function saveCart(){ localStorage.setItem('arcadia_cart_v7', JSON.stringify(cart
 
 const products={
   jogos:[
+    
     {name:'Dust', price:250, img:'', tags:['Importado','Raro'], link:'https://ludopedia.com.br/jogo/dust'},
     {name:'504', price:200, img:'', tags:['Importado'], link:'https://ludopedia.com.br/jogo/504'},
     {name:'Illimat', price:150, img:'', tags:['Importado','Raro','Out of Print'], link:'https://ludopedia.com.br/jogo/illimat'},
     {name:'Neuroshina Hex 3.0', price:100, img:'', tags:['Nacional','Out of Print'], link:'https://ludopedia.com.br/jogo/neuroshima-hex-3-0'},
-    {name:'The Lord of The Ice Garden', price:1200, img:'', tags:['Importado','Edição Limitada','Edição Numerada','Out of Print','Raríssimo'], link:'https://ludopedia.com.br/jogo/the-lord-of-the-ice-garden'}
+    {name:'The Lord of The Ice Garden', price:1200, img:'', tags:['Importado','Edição Limitada','Edição Numerada','Out of Print','Raríssimo'], link:'https://ludopedia.com.br/jogo/the-lord-of-the-ice-garden'},
+    { name: 'Game of Thrones Card Game + 9 Expansões', price: 200, img: '', tags:['Nacional','Out of Print','+ Expansão'], link:'#' },
+    { name: 'Dance of the Fireflies', price: 150, img: '', tags:['Importado','Raro'], link:'#' },
+    { name: 'Gardens', price: 200, img: '', tags:['Nacional','Out of Print','Raro'], link:'#' },
+    { name: 'Tao Long', price: 150, img: '', tags:['Nacional','Luxo','Edição Limitada'], link:'#' },
+    { name: 'Dom Capollo', price: 100, img: '', tags:['Nacional','Out of Print'], link:'#' },
+    { name: '7 Wonders', price: 175, img: '', tags:['Nacional'], link:'#' },
+    { name: 'Ryu', price: 150, img: '', tags:['Raro','Importado'], link:'#' },
+    { name: 'Zona Mágica', price: 100, img: '', tags:['Nacional'], link:'#' },
+    { name: '4 Gods', price: 100, img: '', tags:['Nacional'], link:'#' },
+    { name: 'Summoner Wars Master Set + 12 Expansões', price: 250, img: '', tags:['Nacional','Completo','Out of Print'], link:'#' },
+    { name: 'Orient Express', price: 200, img: '', tags:['Importado','Raríssimo','Out of Print'], link:'#' },
+    { name: 'The Circle', price: 150, img: '', tags:['Importado','Raro','Out of Print'], link:'#' },
+    { name: 'Traders of Osaka', price: 150, img: '', tags:['Importado'], link:'#' },
+    { name: 'Inis - Big Box Matagot', price: 350, img: '', tags:['Importado','Out of Print'], link:'#' },
+    { name: 'Five Tribes + Artisans of Naqala + Thieves of Naqala', price: 550, img: '', tags:['+ Expansão','Importado'], link:'#' },
+    { name: 'Samurai Gardener', price: 100, img: '', tags:['Importado','Raro'], link:'#' }
+
+
+
+
   ],
   pacotes:[
-    {name:'Combo Estratégia', price:350, img:'', tags:['Novo','Raro'], link:'#'},
-    {name:'Pacote Aventureiros', price:280, img:'', tags:['Usado','Edição Limitada'], link:'#'},
-    {name:'Coleção Clássica', price:500, img:'', tags:['Premium','Raríssimo','Importado'], link:'#'},
-    {name:'Set Família', price:220, img:'', tags:['Novo','Edição Numerada'], link:'#'},
-    {name:'Kit Starter', price:180, img:'', tags:['Importado','Novo','Out of Print'], link:'#'}
+    {
+    name: "Kit Festinha\n\n7 Jogos\n\nCoup\nBandido\nQuem Foi?\nSaboteur\nAdoradores de Cthulhu\nAvalon",
+    price: 275,
+    img: '',
+    tags: ['Nacional','Importado','Novo'],
+    link: '#'
+  },
+  {
+    name: "Kit Um Pouco de Cada\n\n8 Jogos\n\nClaim\nThe Mind\nSapotagem\nContária\nMatryoshka\nAgent Hunter\nBullfrogs\nPocket Imperium",
+    price: 315,
+    img: '',
+    tags: ['Nacional','Importado','Novo','Usado'],
+    link: '#'
+  },
+  {
+    name: "Kit Assustador\n\n9 Jogos\n\n13 Fantasmas\nLondon After Midnight\nMuertoons\nDia de Los Muertos\nLobisomem Por Uma Noite\nMasques\nFear\nNosferatu\nAnkh",
+    price: 355,
+    img: '',
+    tags: ['Nacional','Importado','Novo','Usado','Raro','Raríssimo'],
+    link: '#'
+  },
+  {
+    name: "Kit Raros Importados\n\n16 Jogos\n\nKill Shot\nTop Gun - The Plot Twist Party Game\nLucha Jeffe\nDeck Building - The Deck Building Game\nFor Sale\nLemonade Stand\nArche Noah\nCrazy Lab\nKobayakawa\nBaby Blues\nC'est Mon Fort\nKnee Jerk\nVizia\nKrakatoa\nHunting Party",
+    price: 620,
+    img: '',
+    tags: ['Novo','Usado','Importado','Lacrado','Raro','Raríssimo'],
+    link: '#'
+  }
+    
   ],
   mangas: [
-    {name:'Naruto Vol.1', price:40, img:'', tags:['Usado','Nacional'], link:'#'},
-    {name:'One Piece Vol.5', price:55, img:'', tags:['Novo','Importado','Raro'], link:'#'},
-    {name:'Attack on Titan Vol.3', price:60, img:'', tags:['Premium','Edição Numerada'], link:'#'},
-    {name:'Dragon Ball Z Vol.2', price:50, img:'', tags:['Usado','Out of Print'], link:'#'},
-    {name:'Bleach Vol.7', price:45, img:'', tags:['Novo','Raro','Importado'], link:'#'}
+    {name:'Vinland Saga (1 a 9)', price:80, img:'', tags:['Nacional'], link:'#'},
+    {name:'Ataque dos Titãs (1 a 11)', price:100, img:'', tags:['Nacional','+ Brinde'], link:'#'},
+    {name:'All You Need is Kill', price:25, img:'', tags:['Nacional','Completo'], link:'#'}
   ],
   quadrinhos: [
-    {name:'Batman: Ano Um', price:80, img:'', tags:['Premium','Raro'], link:'#'},
-    {name:'Superman: O Homem de Aço', price:70, img:'', tags:['Usado','Novo'], link:'#'},
-    {name:'Mulher-Maravilha: Terra Um', price:90, img:'', tags:['Importado','Edição Limitada'], link:'#'},
-    {name:'Homem-Aranha: De Volta ao Lar', price:75, img:'', tags:['Novo','Raríssimo'], link:'#'},
-    {name:'X-Men: Dias de um Futuro Esquecido', price:85, img:'', tags:['Usado','Premium','Out of Print'], link:'#'}
+    {name:'A Última Caçada de Kraven', price:40, img:'', tags:['Capa Dura','Panini','Lacrado'], link:'#'},
+    {name:'Camelot 3000', price:25, img:'', tags:['Mythos','Danificado'], link:'#'},
+    {name:'Marvel Especial - Vingança', price:20, img:'', tags:['Capa Dura'], link:'#'},
+    {name:'Marvel X - Terra X e Universo X e Paraíso X', price:420, img:'', tags:['Capa Dura','Luxo'], link:'#'},
+    {name:'Vingadores vs. X-Men vs. Quarteto Fantástico', price:35, img:'', tags:['Lacrado'], link:'#'},
+    {name:'Savage Dragon - Unidos', price:25, img:'', tags:['Novo'], link:'#'}
   ],
   livros: [
-    {name:'O Hobbit', price:60, img:'', tags:['Novo','Importado'], link:'#'},
-    {name:'Senhor dos Anéis: Sociedade do Anel', price:120, img:'', tags:['Edição Limitada','Raríssimo'], link:'#'},
-    {name:'Harry Potter e a Pedra Filosofal', price:50, img:'', tags:['Usado','Novo'], link:'#'},
-    {name:'Game of Thrones Vol.1', price:70, img:'', tags:['Importado','Raro'], link:'#'},
-    {name:'O Nome do Vento', price:80, img:'', tags:['Premium','Edição Numerada','Novo'], link:'#'}
+    {name:'Não Faça Acordos com o Dragão (Shadowrun)', price:10, img:'', tags:['Usado','Raríssimo'], link:'#'},
+    {name:'Os Três Mosqueteiros', price:12, img:'', tags:['Capa Dura','Luxo','Raro'], link:'#'},
+    {name:'Metallica - Biografia', price:12, img:'', tags:[], link:'#'},
+    {name:'O Cavalo e Seu Menino', price:10, img:'', tags:['Lacrado'], link:'#'},
+    {name:'The Witcher - A Espada do Destino', price:10, img:'', tags:['Raro','Usado','Danificado'], link:'#'},
+    {name:'Mestres do Mistério - Edgar Allan Poe e Outros', price:10, img:'', tags:['Novo'], link:'#'},
+    {name:'O Corvo', price:12, img:'', tags:['Novo'], link:'#'},
+    {name:'O Pequeno Príncipe', price:15, img:'', tags:['Novo'], link:'#'},
+    {name:'O Escaravelho de Ouro e Outras Histórias', price:10, img:'', tags:['Usado','Danificado'], link:'#'},
+    {name:'O Cavaleiro Inexistente', price:10, img:'', tags:['Novo'], link:'#'},
+    {name:'O Nome do Vento', price:25, img:'', tags:[], link:'#'},
+    {name:'O Silmarillion', price:20, img:'', tags:['Nacional'], link:'#'},
+    {name:'O Silmarillion', price:45, img:'', tags:['Importado','Luxo','Capa Dura','Raro'], link:'#'},
+    {name:'Banquete de Gelo & Fogo', price:35, img:'', tags:['Capa Dura'], link:'#'},
+    {name:'O Senhor dos Anéis', price:650, img:'', tags:['Completo','Luxo','Edição Numerada','Edição Limitada','Capa Dura'], link:'#'}
   ],
-  RPG: [
-    {name:'Dungeons & Dragons Starter', price:200, img:'', tags:['Novo','Importado'], link:'#'},
-    {name:'Cthulhu RPG', price:180, img:'', tags:['Raríssimo','Edição Limitada'], link:'#'},
-    {name:'Vampiro: A Máscara', price:220, img:'', tags:['Usado','Raro','Nacional'], link:'#'},
-    {name:'GURPS Básico', price:150, img:'', tags:['Novo','Edição Numerada'], link:'#'},
-    {name:'Pathfinder Vol.1', price:210, img:'', tags:['Importado','Premium','Novo'], link:'#'}
+  
+  rpg: [
+  {name:'Ars Magica 5ª Ed', price:120, img:'', tags:['Novo','Nacional'], link:'https://ludopedia.com.br/jogo/ars-magica-5th-edition'},
+  {name:'Guia da Camarilla 3ª Edição', price:100, img:'', tags:['Raríssimo','Usado'], link:'https://ludopedia.com.br/jogo/vampire-the-masquerade-revised-edition-guide-to-the-camarilla'},
+  {name:'Starfinder', price:160, img:'', tags:['Novo','Nacional'], link:'https://ludopedia.com.br/jogo/starfinder-core-rulebook'},
+  {name:'The Strange', price:120, img:'', tags:['Novo','Nacional'], link:'https://ludopedia.com.br/jogo/the-strange'},
+  {name:'O Um Anel 2ª Edição + Compêndio Rivendell', price:150, img:'', tags:['Novo','+ Brinde'], link:'https://ludopedia.com.br/jogo/the-one-ring-second-edition-core-rules'},
+  {name:'Vampiro: A Máscara 5ª ED', price:250, img:'', tags:['Luxo','Novo'], link:'https://ludopedia.com.br/jogo/vampire-the-masquerade-5th-edition-core-book-deluxe'},
+  {name:'Anarch + Camarilla', price:100, img:'', tags:['Expansão','Novo','Importado'], link:'https://ludopedia.com.br/jogo/vampire-the-masquerade-5th-edition-anarch'},
+  {name:'O Um Anel 1ª Edição (Além do Ermo) + Dados Especiais + Escudo do Mestre + Atlas da Terra Média', price:450, img:'', tags:['+ Brinde','Raríssimo'], link:'https://ludopedia.com.br/jogo/the-one-ring-adventures-over-the-edge-of-the-wild'}
+    
   ],
   diversos: [
-    {name:'Quebra-Cabeça 1000 peças', price:90, img:'', tags:['Novo','Raro'], link:'#'},
-    {name:'Miniaturas Fantasy', price:120, img:'', tags:['Importado','Edição Limitada'], link:'#'},
-    {name:'Coleção Chaveiros', price:60, img:'', tags:['Usado','Novo','Premium'], link:'#'},
-    {name:'Livro de Figurinhas', price:45, img:'', tags:['Novo','Raro','Out of Print'], link:'#'},
-    {name:'Cartas Colecionáveis', price:150, img:'', tags:['Importado','Raríssimo','Edição Numerada'], link:'#'}
+    { name:'Walkie Talkie - Par', price:50, img:'', tags:['Eletrônico'], link:'#' },
+    { name:"Sid Meyer's Pirates - CD-Rom", price:20, img:'', tags:[], link:'#' }
+    
   ],
   canecas: [
-    {name:'Caneca Arcádia', price:35, img:'', tags:['Novo','Premium'], link:'#'},
-    {name:'Caneca Gamer', price:40, img:'', tags:['Importado','Raro'], link:'#'},
-    {name:'Caneca Geek', price:45, img:'', tags:['Usado','Novo'], link:'#'},
-    {name:'Caneca RPG', price:50, img:'', tags:['Edição Limitada','Raríssimo'], link:'#'},
-    {name:'Caneca Star Wars', price:55, img:'', tags:['Importado','Edição Numerada','Premium'], link:'#'}
+    {name:'Caneca Personalizada', price:27, img:'', tags:['Sob Demanda'], link:'#'},
+    {name:'Caneca Mágica Personalizada', price:47, img:'', tags:['Sob Demanda'], link:'#'}
+    
   ],
   cubos: [
-    {name:'Cubo Mágico 3x3', price:25, img:'', tags:['Novo','Raro'], link:'#'},
-    {name:'Cubo Mágico 4x4', price:40, img:'', tags:['Importado','Edição Limitada'], link:'#'},
-    {name:'Cubo Mágico Pyraminx', price:35, img:'', tags:['Novo','Raríssimo','Premium'], link:'#'},
-    {name:'Cubo Mágico Mirror', price:45, img:'', tags:['Usado','Novo'], link:'#'},
-    {name:'Cubo Mágico Megaminx', price:50, img:'', tags:['Importado','Edição Numerada','Raro'], link:'#'}
+   {name:'2x2x2', price:35, img:'', tags:['Semi-Pro','MoYu'], link:'#'},
+   {name:'3x3x3', price:35, img:'', tags:['Semi-Pro','MoYu'], link:'#'},
+   {name:'4x4x4', price:45, img:'', tags:['Semi-Pro','MoYu'], link:'#'},
+   {name:'5x5x5', price:50, img:'', tags:['Semi-Pro','MoYu'], link:'#'},
+   {name:'6x6x6', price:60, img:'', tags:['Semi-Pro','MoYu'], link:'#'},
+   {name:'Megamix', price:60, img:'', tags:['Semi-Pro','MoYu'], link:'#'},
+   {name:'Piramyx', price:35, img:'', tags:['Semi-Pro','MoYu'], link:'#'},
+   {name:'Mirror Prata', price:38, img:'', tags:[], link:'#'},
+   {name:'Mirror Ouro', price:38, img:'', tags:[], link:'#'},
+   {name:'Skewb', price:45, img:'', tags:['MoYu'], link:'#'},
+    {name:'Pyramorphix 3x3x3', price:45, img:'', tags:['MoYu'], link:'#'}
   ]
 };
 
@@ -325,19 +405,39 @@ Ah, já ia me esquecendo, mas não vou por imagem por que ia ser muito trabalhos
         case 'usado': color='var(--tag-usado)'; break;
         case 'nacional': color='var(--tag-nacional)'; break;
         case 'edição numerada': color='var(--tag-edicao-numerada)'; break;
+        case 'semi-pro': color='var(--tag-semi-pro)'; break;
+        case 'moyu': color='var(--tag-moyu)'; break;
+        case '+ brinde': color='var(--tag-brinde)'; break;
+        case 'danificado': color='var(--tag-danificado)'; break;
+        case 'sob demanda': color='var(--tag-sob-demanda)'; break;
+        case 'box': color='var(--tag-box)'; break;
+        case 'gadget': color='var(--tag-gadget)'; break;
+        case 'eletrônico': color='var(--tag-eletronico)'; break;
+        case 'completo': color='var(--tag-completo)'; break;
+        case 'luxo': color='var(--tag-luxo)'; break;
+        case 'capa dura': color='var(--tag-capa-dura)'; break;
+        case 'panini': color='var(--tag-panini)'; break;
+        case 'lacrado': color='var(--tag-lacrado)'; break;
+        case 'mythos': color='var(--tag-mythos)'; break;
+
+
+        
+
+
         default: color='#888'; break;
       }
       tagsHTML += `<span class="tag" style="background:${color}">${tag}</span>`;
     });
 
     card.innerHTML=`
-      ${p.img?`<img src="${p.img}" alt="${p.name}">`:''}
-      <h3>${p.name}</h3>
-      <p>R$${p.price.toFixed(2)}</p>
-      ${tagsHTML}
-      <a href="${p.link}" class="btn-saiba" target="_blank">Saiba Mais</a>
-      <button class="btn" onclick="addToCart('${p.name}',${p.price},'${p.img}',this)">Comprar</button>
-    `;
+  ${p.img?`<img src="${p.img}" alt="${p.name}">`:''}
+  <h3>${p.name}</h3>
+  <p>R$${p.price.toFixed(2)}</p>
+  ${tagsHTML}
+  ${ (cat==='jogos' || cat==='RPG') ? `<a href="${p.link}" class="btn-saiba" target="_blank">Saiba Mais</a>` : '' }
+  <button class="btn" onclick="addToCart('${p.name}',${p.price},'${p.img}',this)">Comprar</button>
+`;
+
     grid.appendChild(card);
   });
 }
